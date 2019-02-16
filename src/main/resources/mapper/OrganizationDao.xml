@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sig.fayi.dao.OrganizationDao">
+    <!--查找所有组织-->
+    <select id="findAllOrganition" resultType="com.sig.fayi.entity.Organization">
+        SELECT * FROM organization_tab;
+    </select>
+
+    <!--根据地址查找组织-->
+    <select id="findOrganitionByAddress" resultType="com.sig.fayi.entity.Organization">
+        SELECT * FROM organization_tab
+        WHERE address LIKE '%#{address}%';
+    </select>
+
+    <!--添加组织-->
+    <insert id="addOrganition">
+        INSERT INTO organization_tab(phone,people_name,organizationName,proofImage,idCard,positiveImage,negativeImage,address,signature,password,email,register_time)
+        VALUES(#{organization.phone},#{organization.people_name},#{organization.organizationName},#{organization.proofImage},#{organization.idCard},#{organization.positiveImage},#{organization.negativeImage},#{organization.address},#{organization.signature},#{organization.password},#{organization.email},#{organization.register_time});
+    </insert>
+
+    <!--根据电话密码查找组织-->
+    <select id="findOrganitionByPhonePass" resultType="com.sig.fayi.entity.Organization">
+        SELECT * FROM organization_tab
+        WHERE phone=#{phone} AND password=#{password};
+    </select>
+</mapper>
