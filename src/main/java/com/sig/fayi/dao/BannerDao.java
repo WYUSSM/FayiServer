@@ -7,8 +7,22 @@ import java.util.List;
 
 public interface BannerDao {
 
+    /*
+     *@Author sig
+     *@Description 查找所有轮播
+     *@Date 23:55 2019/2/20
+     *@Param []
+     *@return java.util.List<com.sig.fayi.entity.HomeBanner>
+     **/
     List<HomeBanner> findAllBanner();
 
+    /*
+     *@Author sig
+     *@Description 添加轮播
+     *@Date 23:55 2019/2/20
+     *@Param [homeBanner]
+     *@return int
+     **/
     int insertBanner(@Param("homeBanner") HomeBanner homeBanner);
 
 }

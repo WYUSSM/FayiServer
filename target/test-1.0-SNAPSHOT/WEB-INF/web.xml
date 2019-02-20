@@ -45,4 +45,7 @@
     <!--默认匹配所有请求-->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  <listener>
+    <listener-class>com.sig.fayi.servlet.SocketServiceLoader</listener-class>
+  </listener>
 </web-app>

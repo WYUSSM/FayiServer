@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sig.fayi.dao.EssayDao">
+
+    <insert id="insertEssay" useGeneratedKeys="true" keyProperty="essay.id">
+        INSERT INTO essay(title,cover,url,author,view,time) VALUES(essay.title,essay.cover,essay.url,essay.author,essay.view,essay.time);
+    </insert>
+
+    <select id="findAllEssay" resultType="com.sig.fayi.entity.Essay">
+        SELECT * FROM essay_tab ORDER BY time DESC;
+    </select>
+</mapper>
