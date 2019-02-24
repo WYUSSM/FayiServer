@@ -23,4 +23,15 @@ public interface EssayDao {
      *@return
      **/
     List<Essay> findAllEssay();
+
+    /*
+     *@Author sig
+     *@Description
+     *@Date 18:51 2019/2/21
+     *@Param [id]
+     *@return com.sig.fayi.entity.Essay
+     **/
+    Essay findEssayById(@Param("id") int id);
+
+    int deleteEssayById(@Param("id")int id);
 }

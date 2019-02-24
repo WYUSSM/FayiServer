@@ -1,5 +1,9 @@
 package com.sig.fayi.dao;
 
-public interface VoluntaryDao {
+import com.sig.fayi.entity.Voluntary;
 
+import java.util.List;
+
+public interface VoluntaryDao {
+    List<Voluntary> findAllVoluntary();
 }

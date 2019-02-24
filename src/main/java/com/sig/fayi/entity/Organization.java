@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Organization {
     private int id;
+    private String headImage;
+    private String backgroundImage;
     private String phone;
     private String people_name;
     private String organizationName;
@@ -63,6 +65,22 @@ public class Organization {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(String headImage) {
+        this.headImage = headImage;
+    }
+
+    public String getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(String backgroundImage) {
+        this.backgroundImage = backgroundImage;
     }
 
     public String getPhone() {
