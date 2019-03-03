@@ -43,4 +43,31 @@ public interface UserService {
      *@return com.sig.fayi.dto.ResultDto
      **/
     ResultDto findUserByPhone(String phone);
+
+    /*
+     *@Author sig
+     *@Description 通过id修改基本信息
+     *@Date 11:20 2019/3/1
+     *@Param [user]
+     *@return com.sig.fayi.dto.ResultDto
+     **/
+    ResultDto changeUserById(User user);
+
+    /*
+     *@Author sig
+     *@Description 通过id修改头像
+     *@Date 11:25 2019/3/1
+     *@Param [id, headiamge]
+     *@return com.sig.fayi.dto.ResultDto
+     **/
+    ResultDto changeHeadImageById(int id , String headiamge);
+
+    /*
+     *@Author sig
+     *@Description 通过id修改背景图片
+     *@Date 11:25 2019/3/1
+     *@Param [id, backgroundImage]
+     *@return com.sig.fayi.dto.ResultDto
+     **/
+    ResultDto changeBackgroundImageById(int id , String backgroundImage);
 }

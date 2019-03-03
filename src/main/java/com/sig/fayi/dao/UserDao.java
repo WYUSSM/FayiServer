@@ -42,4 +42,32 @@ public interface UserDao {//添加UserDao的test时，选中类名UserDao，右�
      *@return com.sig.fayi.entity.user 正确返回user，失败返回null
      **/
     User checkPassword(@Param("phone") String phone,@Param("password") String password);
+
+    /*
+     *@Author sig
+     *@Description 通过id修改用户基本信息
+     *@Date 10:53 2019/3/1
+     *@Param [user]
+     *@return int
+     **/
+    int changeUserById(@Param("user") User user);
+
+    /**
+     * 通过id修改headimage
+     *
+     * @param id
+     * @param headIamge
+     * @return 更改成功返回1，没有则0
+     */
+    int changeHeadImageById(@Param("id") int id , @Param("headImage") String headIamge);
+
+    /**
+     * 通过id修改headimage
+     *
+     * @param id
+     * @param backgroundImage
+     * @return 更改成功返回1，没有则0
+     */
+    int changeBackgroundImageById(@Param("id") int id , @Param("backgroundImage") String backgroundImage);
+
 }

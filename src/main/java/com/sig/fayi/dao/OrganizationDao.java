@@ -36,4 +36,6 @@ public interface OrganizationDao {
 
 
     Organization findOrganitionByPhonePass(@Param("phone") String phone,@Param("password") String password);
+
+    List<Organization> findOrganitionByName(@Param("name") String name);
 }

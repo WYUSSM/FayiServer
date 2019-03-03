@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
     /**
-     * 查找所有User，并按年龄降序排序好
+     * 查找所有User
      * @return
      */
     @Override
@@ -76,6 +76,57 @@ public class UserServiceImpl implements UserService {
         if(user!=null){
             return new ResultDto(200,"success",user);
         }else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    /*
+     *@Author sig
+     *@Description 通过id修改基本信息
+     *@Date 11:22 2019/3/1
+     *@Param [user]
+     *@return com.sig.fayi.dto.ResultDto
+     **/
+    @Override
+    public ResultDto changeUserById(User user){
+        int count=userDao.changeUserById(user);
+        if(count!=0){
+            return new ResultDto(200,"success",null);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    /*
+     *@Author sig
+     *@Description 修改头像
+     *@Date 12:12 2019/3/1
+     *@Param [id, headIamge]
+     *@return com.sig.fayi.dto.ResultDto
+     **/
+    @Override
+    public ResultDto changeHeadImageById(int id , String headIamge){
+        int count=userDao.changeHeadImageById(id,headIamge);
+        if(count!=0){
+            return new ResultDto(200,"success",null);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    /*
+     *@Author sig
+     *@Description 修改背景图片
+     *@Date 12:12 2019/3/1
+     *@Param [id, backgroundImage]
+     *@return com.sig.fayi.dto.ResultDto
+     **/
+    @Override
+    public ResultDto changeBackgroundImageById(int id , String backgroundImage){
+        int count=userDao.changeBackgroundImageById(id,backgroundImage);
+        if(count!=0){
+            return new ResultDto(200,"success",null);
+        }else {
             return new ResultDto(200,"failure",null);
         }
     }

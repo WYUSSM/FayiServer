@@ -58,10 +58,23 @@ public class OrganizationController {
             String proofImage=FileUploadUtil.uploadFile(file[0],request);
             String positiveImage=FileUploadUtil.uploadFile(file[1],request);
             String negativeImage=FileUploadUtil.uploadFile(file[2],request);
-            Organization organization=new Organization(phone,people_name,organizationName,proofImage,idCard,positiveImage,negativeImage,address,signature,password,email,new Date());
+            Organization organization=new Organization(phone,people_name,organizationName,proofImage,idCard,positiveImage,negativeImage,address,signature,password,email,0,new Date());
             return organizationService.addOrganition(organization);
         }else{
             return new ResultDto(200,"failure",null);
         }
+    }
+
+    /*
+     *@Author sig
+     *@Description 查找所有组织
+     *@Date 14:32 2019/3/1
+     *@Param [request, response]
+     *@return com.sig.fayi.dto.ResultDto
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/findAllOrganization")
+    public ResultDto findAllOrganization(HttpServletRequest request, HttpServletResponse response){
+        return organizationService.findAllOrganition();
     }
 }

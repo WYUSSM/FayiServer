@@ -25,4 +25,9 @@
         SELECT * FROM organization_tab
         WHERE phone=#{phone} AND password=#{password};
     </select>
+
+    <select id="findOrganitionByName" resultType="com.sig.fayi.entity.Organization">
+        SELECT * FROM organization_tab
+        WHERE organizationName LIKE %%#{name}%%;
+    </select>
 </mapper>

@@ -1,0 +1,44 @@
+﻿<style>
+.carousel-item img{
+	max-width: 100%;
+	height:auto;
+}
+</style>
+
+.carousel-inner .item{
+    background: no-repeat center center;
+    background-size: cover;
+}
+
+#showleft{
+	position:absolute;
+	left:0%; 
+	top:0px;
+	height: 100%;
+}
+
+#showright{
+	position:absolute;
+	left:66.6%; 
+	top:0px;
+	height: 100%;
+}
+
+#left-control{
+	width:50%;
+	display:none;
+}
+
+#right-control{
+	width:50%;
+	display:none;
+}
+
+#showleft:hover #left-control{
+    	display: block;
+}
+
+
+#showright:hover #right-control{
+    	display: block;
+}

@@ -32,4 +32,43 @@
         WHERE phone=#{phone} AND password=#{password};
     </select>
 
+    <!--通过id修改User的基本信息-->
+    <update id="changeUserById" parameterType="com.sig.fayi.entity.User">
+        update user_tab
+        <set>
+            <if test="user.password != null">
+                password =#{user.password},
+            </if>
+            <if test="user.name != null">
+                name =#{user.name},
+            </if>
+            <if test="user.gender!=null and user.gender!=''">
+                gender =#{user.gender},
+            </if>
+            <if test="user.birthday != null">
+                birthday =#{user.birthday},
+            </if>
+            <if test="user.address != null">
+                address =#{user.address},
+            </if>
+            <if test="user.signature != null">
+                signature =#{user.signature},
+            </if>
+        </set>
+        where id =#{user.id}
+    </update>
+
+    <!--通过id修改headimage-->
+    <update id="changeHeadImageById">
+        UPDATE user_tab
+        SET headimage = #{headImage}
+        WHERE id=#{id}
+    </update>
+
+    <!--通过id修改headimage-->
+    <update id="changeBackgroundImageById">
+        UPDATE user_tab
+        SET backgroundImage = #{backgroundImage}
+        WHERE id=#{id}
+    </update>
 </mapper>

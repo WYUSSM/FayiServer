@@ -12,6 +12,7 @@ public class User {
     private String backgroundImage;
     private String address;
     private String idCard;
+    private double volunteer_time;
     private int integral;
     private String flag;
     private String registerTime;
@@ -110,6 +111,18 @@ public class User {
 
     public void setIdCard(String idCard) {
         this.idCard = idCard;
+    }
+
+    public void setHeadImage(String headImage) {
+        this.headImage = headImage;
+    }
+
+    public double getVolunteer_time() {
+        return volunteer_time;
+    }
+
+    public void setVolunteer_time(double volunteer_time) {
+        this.volunteer_time = volunteer_time;
     }
 
     public int getIntegral() {

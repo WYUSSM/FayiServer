@@ -4,10 +4,13 @@ import com.sig.fayi.dto.ResultDto;
 import com.sig.fayi.entity.User;
 import com.sig.fayi.exception.BaseExceptionHandleAction;
 import com.sig.fayi.service.UserService;
+import com.sig.fayi.utils.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -94,5 +97,58 @@ public class UserController extends BaseExceptionHandleAction {
     public ResultDto findUserByPhone(HttpServletRequest request,HttpServletResponse response){
         String phone=request.getParameter("phone");
         return userService.findUserByPhone(phone);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/changeHeadImageById")
+    public ResultDto changeHeadImageById(@RequestParam(value = "file") MultipartFile[] file, HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        if (file.length > 0) {
+            String fileUUIDName= FileUploadUtil.uploadFile(file[0],request);
+            return userService.changeHeadImageById(id,fileUUIDName);
+        }else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/changeBackgroundImageById")
+    public ResultDto changeBackgroundImageById(@RequestParam(value = "file") MultipartFile[] file, HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        if (file.length > 0) {
+            String fileUUIDName= FileUploadUtil.uploadFile(file[0],request);
+            return userService.changeBackgroundImageById(id,fileUUIDName);
+        }else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/changeUserById")
+    public ResultDto changeUserById(HttpServletRequest request,HttpServletResponse response){
+        int id=Integer.parseInt(request.getParameter("id"));
+        User user=new User();
+        user.setId(id);
+        if (request.getParameter("newPsw")!=null) {
+            user.setPassword(request.getParameter("newPsw"));
+        }
+        if (request.getParameter("name")!=null) {
+            user.setName(request.getParameter("name"));
+        }
+        if (request.getParameter("gender")!=null){
+            String sex=request.getParameter("gender");
+            user.setGender(sex);
+        }
+        if (request.getParameter("birthday")!= null) {
+            user.setBirthday(request.getParameter("birthday"));
+        }
+        if (request.getParameter("address")!=null) {
+            user.setAddress(request.getParameter("address"));
+        }
+        if (request.getParameter("signature")!=null) {
+            user.setSignature(request.getParameter("signature"));
+        }
+        return userService.changeUserById(user);
     }
 }

@@ -17,6 +17,7 @@ public class Organization {
     private String signature;
     private String password;
     private String email;
+    private double volunteer_time;
     private String flag;
     private int examineUser;
     private Date examine_time;
@@ -25,7 +26,7 @@ public class Organization {
     public Organization(){
 
     }
-    public Organization(int id, String phone, String people_name, String organizationName, String proofImage, String idCard, String positiveImage, String negativeImage, String address, String signature, String password, String email, String flag, int examineUser, Date examine_time, Date register_time) {
+    public Organization(int id, String phone, String people_name, String organizationName, String proofImage, String idCard, String positiveImage, String negativeImage, String address, String signature, String password, String email, double volunteer_time,String flag, int examineUser, Date examine_time, Date register_time) {
         this.id = id;
         this.phone = phone;
         this.people_name = people_name;
@@ -38,13 +39,14 @@ public class Organization {
         this.signature = signature;
         this.password = password;
         this.email = email;
+        this.volunteer_time=volunteer_time;
         this.flag = flag;
         this.examineUser = examineUser;
         this.examine_time = examine_time;
         this.register_time = register_time;
     }
 
-    public Organization(String phone, String people_name, String organizationName, String proofImage, String idCard, String positiveImage, String negativeImage, String address, String signature, String password, String email, Date register_time) {
+    public Organization(String phone, String people_name, String organizationName, String proofImage, String idCard, String positiveImage, String negativeImage, String address, String signature, String password, String email,double volunteer_time, Date register_time) {
         this.phone = phone;
         this.people_name = people_name;
         this.organizationName = organizationName;
@@ -56,6 +58,7 @@ public class Organization {
         this.signature = signature;
         this.password = password;
         this.email = email;
+        this.volunteer_time=volunteer_time;
         this.register_time = register_time;
     }
 
