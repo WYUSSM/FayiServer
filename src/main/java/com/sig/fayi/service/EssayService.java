@@ -8,4 +8,11 @@ public interface EssayService {
     ResultDto findAllEssay();
 
     ResultDto insertEssay(Essay essay);
+
+    //通过id修改文章
+    ResultDto changeEssayById(Essay essay);
+
+    ResultDto changeCoverById(String cover,int id);
+
+    ResultDto deleteEssayById(int id);
 }

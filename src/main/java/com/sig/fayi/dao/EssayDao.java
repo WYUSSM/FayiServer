@@ -34,4 +34,9 @@ public interface EssayDao {
     Essay findEssayById(@Param("id") int id);
 
     int deleteEssayById(@Param("id")int id);
+
+    int changeEssayById(@Param("essay") Essay essay);
+
+    int changeCoverById(@Param("cover") String cover,@Param("id") int id);
+
 }

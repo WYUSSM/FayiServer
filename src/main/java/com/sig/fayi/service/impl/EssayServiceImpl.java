@@ -34,4 +34,36 @@ public class EssayServiceImpl implements EssayService {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @Override
+    public  ResultDto changeEssayById(Essay essay){
+        int count = essayDao.changeEssayById(essay);
+        if(count==1){
+            return new ResultDto(200,"success",null);
+        }
+        else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @Override
+    public  ResultDto changeCoverById(String cover,int id){
+        int count = essayDao.changeCoverById(cover,id);
+        if(count==1){
+            return new ResultDto(200,"success",null);
+        }
+        else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    public  ResultDto deleteEssayById(int id){
+        int count = essayDao.deleteEssayById(id);
+        if(count ==1){
+            return  new ResultDto(200,"success",null);
+        }
+        else{
+            return  new ResultDto(200,"failure",null);
+        }
+    }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @Controller
@@ -46,5 +47,38 @@ public class EssayController extends BaseExceptionHandleAction {
         }else{
             return new ResultDto(200,"failure",null);
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/changeEssayById")
+    public ResultDto changeEssayById(HttpServletRequest request, HttpServletResponse response){
+        String title=request.getParameter("title");
+        String url=request.getParameter("url");
+        String author=request.getParameter("author");
+        int id=Integer.parseInt(request.getParameter("id"));
+        Essay essay=new Essay();
+        essay.setTitle(title);
+        essay.setAuthor(author);
+        essay.setUrl(url);
+        return essayService.changeEssayById(essay);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/changeCoverById")
+    public  ResultDto changeCoverById(@RequestParam(value = "file") MultipartFile[] file, HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        if (file.length > 0) {
+            String fileUUIDName= FileUploadUtil.uploadFile(file[0],request);
+            return essayService.changeCoverById(fileUUIDName,id);
+        }else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteEssayById")
+    public ResultDto deleteEssayById(HttpServletRequest request, HttpServletResponse response){
+        int id=Integer.parseInt(request.getParameter("id"));
+        return essayService.deleteEssayById(id);
     }
 }

@@ -19,4 +19,27 @@
     <delete id="deleteEssayById">
         DELETE FROM essay_tab WHERE id=#{id};
     </delete>
+
+    <!--通过id修改文章-->
+    <update id="changeEssayById" parameterType="com.sig.fayi.entity.Essay">
+        UPDATE essay_tab
+        <set>
+            <if test="essay.title!= null">
+                title =#{essay.title},
+            </if>
+            <if test="essay.url != null">
+                url =#{essay.url},
+            </if>
+            <if test="essay.author!= null">
+                author =#{essay.author},
+            </if>
+        </set>
+        WHERE id=#{id};
+    </update>
+
+    <update id="changeCoverById">
+        UPDATE essay_tab
+        SET cover=#{cover}
+        WHERE id=#{id};
+    </update>
 </mapper>
