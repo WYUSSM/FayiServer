@@ -14,6 +14,11 @@
         SELECT * FROM user_tab;
     </select>
 
+    <!--按id查找用户-->
+    <select id="findUserById" resultType="com.sig.fayi.entity.User">
+        SELECT * FROM user_tab
+        WHERE id=#{id};
+    </select>
     <!--通过 name、phone和password 来添加 User-->
     <insert id="addUserByPhonePsw">
         <!--当出现主键冲突时(即重复时)，会报错;不想让程序报错，加入ignore-->
@@ -70,5 +75,16 @@
         UPDATE user_tab
         SET backgroundImage = #{backgroundImage}
         WHERE id=#{id}
+    </update>
+
+    <select id="findUserByName" resultType="com.sig.fayi.entity.User">
+        SELECT * FROM user_tab
+        WHERE name=#{name};
+    </select>
+
+    <update id="changePhoneById">
+        UPDATE user_tab
+        SET phone=#{phone}
+        WHERE id=#{id};
     </update>
 </mapper>

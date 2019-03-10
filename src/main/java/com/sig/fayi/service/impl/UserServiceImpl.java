@@ -39,6 +39,10 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             return  new ResultDto(200, "phone_exist", null);
         }
+        User user1=userDao.findUserByName(name);
+        if (user != null) {
+            return  new ResultDto(200, "name_exist", null);
+        }
         //手机号未被注册，进行注册，且记录注册时间
         if (userDao.addUserByPhonePsw(phone, password, name ,new Date()) == 1) {
             return new ResultDto(200, "success", null);
@@ -91,7 +95,7 @@ public class UserServiceImpl implements UserService {
     public ResultDto changeUserById(User user){
         int count=userDao.changeUserById(user);
         if(count!=0){
-            return new ResultDto(200,"success",null);
+            return new ResultDto(200,"success",userDao.findUserById(user.getId()));
         }else {
             return new ResultDto(200,"failure",null);
         }
@@ -108,7 +112,7 @@ public class UserServiceImpl implements UserService {
     public ResultDto changeHeadImageById(int id , String headIamge){
         int count=userDao.changeHeadImageById(id,headIamge);
         if(count!=0){
-            return new ResultDto(200,"success",null);
+            return new ResultDto(200,"success",userDao.findUserById(id));
         }else {
             return new ResultDto(200,"failure",null);
         }
@@ -125,7 +129,24 @@ public class UserServiceImpl implements UserService {
     public ResultDto changeBackgroundImageById(int id , String backgroundImage){
         int count=userDao.changeBackgroundImageById(id,backgroundImage);
         if(count!=0){
-            return new ResultDto(200,"success",null);
+            return new ResultDto(200,"success",userDao.findUserById(id));
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    /*
+     *@Author sig
+     *@Description 修改电话
+     *@Date 13:16 2019/3/6
+     *@Param [id, phone]
+     *@return com.sig.fayi.dto.ResultDto
+     **/
+    @Override
+    public ResultDto changePhoneById(int id,String phone){
+        int count=userDao.changePhoneById(id,phone);
+        if(count!=0){
+            return new ResultDto(200,"success",userDao.findUserById(id));
         }else {
             return new ResultDto(200,"failure",null);
         }

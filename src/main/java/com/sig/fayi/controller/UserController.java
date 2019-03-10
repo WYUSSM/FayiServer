@@ -151,4 +151,19 @@ public class UserController extends BaseExceptionHandleAction {
         }
         return userService.changeUserById(user);
     }
+
+    /*
+     *@Author sig
+     *@Description 修改电话
+     *@Date 13:18 2019/3/6
+     *@Param [request, response]
+     *@return com.sig.fayi.dto.ResultDto
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/changePhoneById")
+    public ResultDto changePhoneById(HttpServletRequest request,HttpServletResponse response){
+        int id=Integer.parseInt(request.getParameter("id"));
+        String phone=request.getParameter("phone");
+        return userService.changePhoneById(id,phone);
+    }
 }

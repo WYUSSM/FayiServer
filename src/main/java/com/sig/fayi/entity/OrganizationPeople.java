@@ -3,11 +3,20 @@ package com.sig.fayi.entity;
 import java.util.Date;
 
 public class OrganizationPeople {
+    private int orgPeopleId;
     private int organizationId;
     private int userId;
     private Date apply_time;
     private String flag;
     private Date signUp_time;
+
+    public int getOrgPeopleId() {
+        return orgPeopleId;
+    }
+
+    public void setOrgPeopleId(int orgPeopleId) {
+        this.orgPeopleId = orgPeopleId;
+    }
 
     public int getOrganizationId() {
         return organizationId;

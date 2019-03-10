@@ -1,5 +1,7 @@
 package com.sig.fayi.entity;
 
+import java.util.Date;
+
 public class User {
     private int id;
     private String phone;
@@ -15,15 +17,8 @@ public class User {
     private double volunteer_time;
     private int integral;
     private String flag;
-    private String registerTime;
+    private Date registerTime;
 
-    public String getRegisterTime() {
-        return registerTime;
-    }
-
-    public void setRegisterTime(String registerTime) {
-        this.registerTime = registerTime;
-    }
 
     public int getId() {
         return id;
@@ -139,5 +134,13 @@ public class User {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public Date getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(Date registerTime) {
+        this.registerTime = registerTime;
     }
 }

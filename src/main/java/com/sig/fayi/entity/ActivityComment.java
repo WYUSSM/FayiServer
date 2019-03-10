@@ -14,6 +14,7 @@ public class ActivityComment {
     private List<ActivityGood> activityGoodList;
     private int replyCount;
     private List<ActivityReply> activityReplyList;
+    private String comment_read;
 
     public int getId() {
         return id;
@@ -93,5 +94,13 @@ public class ActivityComment {
 
     public void setActivityReplyList(List<ActivityReply> activityReplyList) {
         this.activityReplyList = activityReplyList;
+    }
+
+    public String getComment_read() {
+        return comment_read;
+    }
+
+    public void setComment_read(String comment_read) {
+        this.comment_read = comment_read;
     }
 }

@@ -70,4 +70,13 @@ public interface UserService {
      *@return com.sig.fayi.dto.ResultDto
      **/
     ResultDto changeBackgroundImageById(int id , String backgroundImage);
+
+    /*
+     *@Author sig
+     *@Description 修改电话
+     *@Date 13:14 2019/3/6
+     *@Param [id, phone]
+     *@return com.sig.fayi.dto.ResultDto
+     **/
+    ResultDto changePhoneById(int id,String phone);
 }

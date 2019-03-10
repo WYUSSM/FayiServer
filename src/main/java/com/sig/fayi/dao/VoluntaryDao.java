@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface VoluntaryDao {
     List<Voluntary> findAllVoluntary();
+
+
 }

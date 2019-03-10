@@ -8,6 +8,7 @@ public class ActivityGood {
     private int gooder;
     private int gooder1;
     private Date good_time;
+    private String good_read;
 
     public int getGoodId() {
         return goodId;
@@ -47,5 +48,13 @@ public class ActivityGood {
 
     public void setGood_time(Date good_time) {
         this.good_time = good_time;
+    }
+
+    public String getGood_read() {
+        return good_read;
+    }
+
+    public void setGood_read(String good_read) {
+        this.good_read = good_read;
     }
 }

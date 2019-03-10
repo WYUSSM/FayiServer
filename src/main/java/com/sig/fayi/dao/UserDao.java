@@ -16,6 +16,8 @@ public interface UserDao {//添加UserDao的test时，选中类名UserDao，右�
      **/
     List<User> findAllUser();
 
+    User findUserById(@Param("id") int id);
+
     /*
      *@Author sig
      *@Description 插入user_tab表
@@ -69,5 +71,9 @@ public interface UserDao {//添加UserDao的test时，选中类名UserDao，右�
      * @return 更改成功返回1，没有则0
      */
     int changeBackgroundImageById(@Param("id") int id , @Param("backgroundImage") String backgroundImage);
+
+    User findUserByName(@Param("name") String name);
+
+    int changePhoneById(@Param("id") int id,@Param("phone") String phone);
 
 }

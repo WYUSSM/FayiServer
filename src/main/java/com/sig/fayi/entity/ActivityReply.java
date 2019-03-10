@@ -9,6 +9,7 @@ public class ActivityReply {
     private Organization responder1;
     private String reply_conent;
     private Date reply_time;
+    private String reply_read;
 
     public int getReplyId() {
         return replyId;
@@ -56,5 +57,13 @@ public class ActivityReply {
 
     public void setReply_time(Date reply_time) {
         this.reply_time = reply_time;
+    }
+
+    public String getReply_read() {
+        return reply_read;
+    }
+
+    public void setReply_read(String reply_read) {
+        this.reply_read = reply_read;
     }
 }
