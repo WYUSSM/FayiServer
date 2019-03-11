@@ -5,7 +5,7 @@
 <mapper namespace="com.sig.fayi.dao.EssayDao">
 
     <insert id="insertEssay" useGeneratedKeys="true" keyProperty="essay.id">
-        INSERT INTO essay(title,cover,url,author,view,time) VALUES(#{essay.title},#{essay.cover},#{essay.url},#{essay.author},#{essay.view},#{essay.time});
+        INSERT INTO essay_tab(title,cover,url,author,view,time) VALUES(#{essay.title},#{essay.cover},#{essay.url},#{essay.author},#{essay.view},#{essay.time});
     </insert>
 
     <select id="findAllEssay" resultType="com.sig.fayi.entity.Essay">
