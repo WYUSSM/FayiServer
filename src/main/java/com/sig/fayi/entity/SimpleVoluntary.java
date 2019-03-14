@@ -1,12 +1,10 @@
 package com.sig.fayi.entity;
 
 import java.util.Date;
-import java.util.List;
 
-public class Voluntary {
+public class SimpleVoluntary {
     private int id;
     private int organizationId;
-    private Organization organization;
     private Date siginUpStartTime;
     private Date siginUpEndTime;
     private Date startTime;
@@ -25,8 +23,6 @@ public class Voluntary {
     private String province;
     private String city;
     private String district;
-    private List<ActivitySignUp> activitySignUps;
-    private List<ActivityComment> activityComments;
 
     public int getId() {
         return id;
@@ -42,14 +38,6 @@ public class Voluntary {
 
     public void setOrganizationId(int organizationId) {
         this.organizationId = organizationId;
-    }
-
-    public Organization getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
     }
 
     public Date getSiginUpStartTime() {
@@ -194,21 +182,5 @@ public class Voluntary {
 
     public void setDistrict(String district) {
         this.district = district;
-    }
-
-    public List<ActivitySignUp> getActivitySignUps() {
-        return activitySignUps;
-    }
-
-    public void setActivitySignUps(List<ActivitySignUp> activitySignUps) {
-        this.activitySignUps = activitySignUps;
-    }
-
-    public List<ActivityComment> getActivityComments() {
-        return activityComments;
-    }
-
-    public void setActivityComments(List<ActivityComment> activityComments) {
-        this.activityComments = activityComments;
     }
 }

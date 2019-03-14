@@ -22,13 +22,14 @@ public class OrganizationServiceImpl implements OrganizationService {
      *@return com.sig.fayi.dto.ResultDto
      **/
     @Override
-    public ResultDto findAllOrganition(){
-        List<Organization> organizations=organizationDao.findAllOrganition();
-        if(organizations.size()>0){
-            return new ResultDto(200,"success",organizations);
-        }else {
-            return new ResultDto(200,"nodata",null);
-        }
+    public List<Organization> findAllOrganition(){
+//        List<Organization> organizations=organizationDao.findAllOrganition();
+//        if(organizations.size()>0){
+//            return new ResultDto(200,"success",organizations);
+//        }else {
+//            return new ResultDto(200,"nodata",null);
+//        }
+        return organizationDao.findAllOrganition();
     }
 
     /*
@@ -57,6 +58,10 @@ public class OrganizationServiceImpl implements OrganizationService {
      **/
     @Override
     public ResultDto addOrganition(Organization organization){
+        Organization organization1=organizationDao.findOrganitionByName(organization.getOrganizationName());
+        if(organization1!=null){
+            return new ResultDto(200,"name_exit",null);
+        }
         if(organizationDao.addOrganition(organization)>0){
             return new ResultDto(200,"success",null);
         }else {
@@ -78,6 +83,15 @@ public class OrganizationServiceImpl implements OrganizationService {
             return new ResultDto(200,"success",organization);
         }else {
             return new ResultDto(200,"failure",null);
+        }
+    }
+
+    public ResultDto findOrganitionByPhone(String phone){
+        Organization organization=organizationDao.findOrganitionByPhone(phone);
+        if(organization!=null){
+            return new ResultDto(200,"success",organization);
+        }else {
+            return new ResultDto(200,"nodata",null);
         }
     }
 }

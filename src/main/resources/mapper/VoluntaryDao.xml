@@ -23,6 +23,9 @@
         <result column="voluntaryCover" property="voluntaryCover"/>
         <result column="title" property="title"/>
         <result column="createTime" property="createTime"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
         <association property="organization" javaType="com.sig.fayi.entity.Organization" column="organizationId" select="findOrganization"></association>
         <collection property="activityComments" resultMap="CommentResult"/>
         <collection property="activitySignUps" resultMap="SignUpResult"/>
@@ -85,4 +88,15 @@
     </select>
 
 
+    <select id="findAllSimpleVoluntary" resultType="com.sig.fayi.entity.SimpleVoluntary">
+        SELECT * FROM voluntary_tab ORDER BY createTime DESC;
+    </select>
+
+    <insert id="addVoluntary" parameterType="com.sig.fayi.entity.SimpleVoluntary">
+        INSERT INTO voluntary_tab(organizationId,siginUpStartTime,siginUpEndTime,startTime,endTime,chargeName,chargePhone,peopleNum,signUpNum,address,addressLongitude,addressLatitude,voluntaryMore,voluntaryCover,title,createTime,province,city,district)
+        VALUES (#{simpleVoluntary.organizationId},#{simpleVoluntary.siginUpStartTime},#{simpleVoluntary.siginUpEndTime},#{simpleVoluntary.startTime},
+        #{simpleVoluntary.endTime},#{simpleVoluntary.chargeName},#{simpleVoluntary.chargePhone},#{simpleVoluntary.peopleNum},#{simpleVoluntary.signUpNum},
+        #{simpleVoluntary.address},#{simpleVoluntary.addressLongitude},#{simpleVoluntary.addressLatitude},#{simpleVoluntary.voluntaryMore},#{simpleVoluntary.voluntaryCover},
+        #{simpleVoluntary.title},#{simpleVoluntary.createTime},#{simpleVoluntary.province},#{simpleVoluntary.city},#{simpleVoluntary.district});
+    </insert>
 </mapper>

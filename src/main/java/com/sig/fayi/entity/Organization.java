@@ -10,7 +10,7 @@ public class Organization {
     private String people_name;
     private String organizationName;
     private String proofImage;
-    private String idCard;
+    private String handIdCard;
     private String positiveImage;
     private String negativeImage;
     private String address;
@@ -25,41 +25,6 @@ public class Organization {
 
     public Organization(){
 
-    }
-    public Organization(int id, String phone, String people_name, String organizationName, String proofImage, String idCard, String positiveImage, String negativeImage, String address, String signature, String password, String email, double volunteer_time,String flag, int examineUser, Date examine_time, Date register_time) {
-        this.id = id;
-        this.phone = phone;
-        this.people_name = people_name;
-        this.organizationName = organizationName;
-        this.proofImage = proofImage;
-        this.idCard = idCard;
-        this.positiveImage = positiveImage;
-        this.negativeImage = negativeImage;
-        this.address = address;
-        this.signature = signature;
-        this.password = password;
-        this.email = email;
-        this.volunteer_time=volunteer_time;
-        this.flag = flag;
-        this.examineUser = examineUser;
-        this.examine_time = examine_time;
-        this.register_time = register_time;
-    }
-
-    public Organization(String phone, String people_name, String organizationName, String proofImage, String idCard, String positiveImage, String negativeImage, String address, String signature, String password, String email,double volunteer_time, Date register_time) {
-        this.phone = phone;
-        this.people_name = people_name;
-        this.organizationName = organizationName;
-        this.proofImage = proofImage;
-        this.idCard = idCard;
-        this.positiveImage = positiveImage;
-        this.negativeImage = negativeImage;
-        this.address = address;
-        this.signature = signature;
-        this.password = password;
-        this.email = email;
-        this.volunteer_time=volunteer_time;
-        this.register_time = register_time;
     }
 
     public int getId() {
@@ -118,12 +83,12 @@ public class Organization {
         this.proofImage = proofImage;
     }
 
-    public String getIdCard() {
-        return idCard;
+    public String getHandIdCard() {
+        return handIdCard;
     }
 
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
+    public void setHandIdCard(String handIdCard) {
+        this.handIdCard = handIdCard;
     }
 
     public String getPositiveImage() {
@@ -172,6 +137,14 @@ public class Organization {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public double getVolunteer_time() {
+        return volunteer_time;
+    }
+
+    public void setVolunteer_time(double volunteer_time) {
+        this.volunteer_time = volunteer_time;
     }
 
     public String getFlag() {

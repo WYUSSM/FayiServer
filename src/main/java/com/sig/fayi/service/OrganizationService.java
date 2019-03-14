@@ -14,7 +14,7 @@ public interface OrganizationService {
      *@Param []
      *@return com.sig.fayi.dto.ResultDto
      **/
-    ResultDto findAllOrganition();
+    List<Organization> findAllOrganition();
 
     /*
      *@Author sig
@@ -42,4 +42,9 @@ public interface OrganizationService {
      *@return com.sig.fayi.dto.ResultDto
      **/
     ResultDto findOrganitionByPhonePass(String phone,String password);
+
+
+    ResultDto findOrganitionByPhone(String phone);
+
+
 }

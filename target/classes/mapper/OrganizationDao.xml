@@ -11,13 +11,13 @@
     <!--根据地址查找组织-->
     <select id="findOrganitionByAddress" resultType="com.sig.fayi.entity.Organization">
         SELECT * FROM organization_tab
-        WHERE address LIKE '%#{address}%';
+        WHERE address LIKE '%%#{address}%%';
     </select>
 
     <!--添加组织-->
     <insert id="addOrganition">
-        INSERT INTO organization_tab(phone,people_name,organizationName,proofImage,idCard,positiveImage,negativeImage,address,signature,password,email,register_time)
-        VALUES(#{organization.phone},#{organization.people_name},#{organization.organizationName},#{organization.proofImage},#{organization.idCard},#{organization.positiveImage},#{organization.negativeImage},#{organization.address},#{organization.signature},#{organization.password},#{organization.email},#{organization.register_time});
+        INSERT INTO organization_tab(phone,people_name,organizationName,proofImage,handIdCard,positiveImage,negativeImage,address,signature,password,email,register_time)
+        VALUES(#{organization.phone},#{organization.people_name},#{organization.organizationName},#{organization.proofImage},#{organization.handIdCard},#{organization.positiveImage},#{organization.negativeImage},#{organization.address},#{organization.signature},#{organization.password},#{organization.email},#{organization.register_time});
     </insert>
 
     <!--根据电话密码查找组织-->
@@ -26,8 +26,18 @@
         WHERE phone=#{phone} AND password=#{password};
     </select>
 
-    <select id="findOrganitionByName" resultType="com.sig.fayi.entity.Organization">
+    <select id="findOrganitionByLikeName" resultType="com.sig.fayi.entity.Organization">
         SELECT * FROM organization_tab
         WHERE organizationName LIKE %%#{name}%%;
+    </select>
+
+    <select id="findOrganitionByPhone" resultType="com.sig.fayi.entity.Organization">
+        SELECT * FROM organization_tab
+        WHERE phone=#{phone};
+    </select>
+
+    <select id="findOrganitionByName" resultType="com.sig.fayi.entity.Organization">
+        SELECT * FROM organization_tab
+        WHERE organizationName=#{name};
     </select>
 </mapper>
