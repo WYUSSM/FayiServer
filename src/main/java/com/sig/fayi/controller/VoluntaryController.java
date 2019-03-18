@@ -40,12 +40,12 @@ public class VoluntaryController extends BaseExceptionHandleAction {
     @ResponseBody
     @RequestMapping(value = "/addVoluntary")
     public ResultDto addVoluntary(@RequestParam(value = "file") MultipartFile[] file, HttpServletRequest request) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         SimpleVoluntary simpleVoluntary=new SimpleVoluntary();
         int organizationId=Integer.parseInt(request.getParameter("organizationId"));
         simpleVoluntary.setOrganizationId(organizationId);
-        Date siginUpStartTime=sdf.parse(request.getParameter("siginUpStartTime"));
-        simpleVoluntary.setSiginUpStartTime(siginUpStartTime);
+//        Date siginUpStartTime=sdf.parse(request.getParameter("siginUpStartTime"));
+        simpleVoluntary.setSiginUpStartTime(new Date());
         Date siginUpEndTime=sdf.parse(request.getParameter("siginUpEndTime"));
         simpleVoluntary.setSiginUpEndTime(siginUpEndTime);
         Date startTime=sdf.parse(request.getParameter("startTime"));
@@ -70,6 +70,7 @@ public class VoluntaryController extends BaseExceptionHandleAction {
         String title=request.getParameter("title");
         simpleVoluntary.setTitle(title);
         simpleVoluntary.setCreateTime(new Date());
+        System.out.println(addressLatitude+","+addressLongitude);
         JSONObject jsonObjectAdds= LocationUtil.getAddress(addressLongitude,addressLatitude);
         String province = jsonObjectAdds.getJSONObject("result").getJSONObject("addressComponent").getString("province");// 省
         String city = jsonObjectAdds.getJSONObject("result").getJSONObject("addressComponent").getString("city");// 市

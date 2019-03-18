@@ -59,8 +59,12 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public ResultDto addOrganition(Organization organization){
         Organization organization1=organizationDao.findOrganitionByName(organization.getOrganizationName());
+        Organization organization2=organizationDao.findOrganitionByPhone(organization.getPhone());
         if(organization1!=null){
             return new ResultDto(200,"name_exit",null);
+        }
+        if(organization2!=null){
+            return new ResultDto(200,"phone_exit",null);
         }
         if(organizationDao.addOrganition(organization)>0){
             return new ResultDto(200,"success",null);
