@@ -1,7 +1,9 @@
 package com.sig.fayi.controller;
 
+import com.sig.fayi.dao.OrganizationPeopleDao;
 import com.sig.fayi.dto.ResultDto;
 import com.sig.fayi.entity.Organization;
+import com.sig.fayi.entity.User;
 import com.sig.fayi.service.OrganizationService;
 import com.sig.fayi.utils.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,6 @@ import java.util.List;
 public class OrganizationController {
     @Autowired
     private OrganizationService organizationService;
-
     /*
      *@Author sig
      *@Description 电话密码登录

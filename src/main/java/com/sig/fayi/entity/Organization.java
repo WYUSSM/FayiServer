@@ -18,6 +18,7 @@ public class Organization {
     private String password;
     private String email;
     private double volunteer_time;
+    private int peopleNum;
     private String flag;
     private int examineUser;
     private Date examine_time;
@@ -145,6 +146,14 @@ public class Organization {
 
     public void setVolunteer_time(double volunteer_time) {
         this.volunteer_time = volunteer_time;
+    }
+
+    public int getPeopleNum() {
+        return peopleNum;
+    }
+
+    public void setPeopleNum(int peopleNum) {
+        this.peopleNum = peopleNum;
     }
 
     public String getFlag() {

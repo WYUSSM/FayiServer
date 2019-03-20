@@ -23,6 +23,7 @@ public class SimpleVoluntary {
     private String province;
     private String city;
     private String district;
+    private String distance;
 
     public int getId() {
         return id;
@@ -182,5 +183,13 @@ public class SimpleVoluntary {
 
     public void setDistrict(String district) {
         this.district = district;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
     }
 }

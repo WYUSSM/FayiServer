@@ -99,4 +99,14 @@
         #{simpleVoluntary.address},#{simpleVoluntary.addressLongitude},#{simpleVoluntary.addressLatitude},#{simpleVoluntary.voluntaryMore},#{simpleVoluntary.voluntaryCover},
         #{simpleVoluntary.title},#{simpleVoluntary.createTime},#{simpleVoluntary.province},#{simpleVoluntary.city},#{simpleVoluntary.district});
     </insert>
+
+    <select id="findVoluntaryById" resultType="com.sig.fayi.entity.Voluntary" resultMap="VoluntaryResult">
+        SELECT voluntary_tab.*,activitysignup_tab.*,activitycomment_tab.*,activitygood_tab.*,activityreply_tab.*
+        FROM voluntary_tab
+        LEFT OUTER JOIN activitysignup_tab ON activitysignup_tab.signupactivityId=voluntary_tab.id
+        LEFT OUTER JOIN activitycomment_tab ON activitycomment_tab.activityId=voluntary_tab.id
+        LEFT OUTER JOIN activitygood_tab ON activitygood_tab.commentId=activitycomment_tab.commentId
+        LEFT OUTER JOIN activityreply_tab ON activityreply_tab.commentId=activitycomment_tab.commentId
+        WHERE voluntary_tab.id=#{id};
+    </select>
 </mapper>

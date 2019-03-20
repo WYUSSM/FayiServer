@@ -33,8 +33,10 @@ public class VoluntaryController extends BaseExceptionHandleAction {
 
     @ResponseBody
     @RequestMapping(value = "/findAllSimpleVoluntary")
-    public ResultDto findAllSimpleVoluntary(){
-        return voluntaryService.findAllSimpleVoluntary();
+    public ResultDto findAllSimpleVoluntary(HttpServletRequest request){
+        String lng=request.getParameter("lng");
+        String lat=request.getParameter("lat");
+        return voluntaryService.findAllSimpleVoluntary(lat,lng);
     }
 
     @ResponseBody
@@ -85,5 +87,12 @@ public class VoluntaryController extends BaseExceptionHandleAction {
         }else{
             return new ResultDto(200,"failure",null);
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findVoluntaryById")
+    public ResultDto findVoluntaryById(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        return voluntaryService.findVoluntaryById(id);
     }
 }

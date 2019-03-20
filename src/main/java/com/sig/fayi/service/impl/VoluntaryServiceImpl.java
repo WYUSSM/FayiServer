@@ -5,6 +5,7 @@ import com.sig.fayi.dto.ResultDto;
 import com.sig.fayi.entity.SimpleVoluntary;
 import com.sig.fayi.entity.Voluntary;
 import com.sig.fayi.service.VoluntaryService;
+import com.sig.fayi.utils.LocationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,9 +28,23 @@ public class VoluntaryServiceImpl implements VoluntaryService {
     }
 
     @Override
-    public ResultDto findAllSimpleVoluntary(){
+    public ResultDto findAllSimpleVoluntary(String lat,String lng){
         List<SimpleVoluntary> simpleVoluntaries=voluntaryDao.findAllSimpleVoluntary();
         if(simpleVoluntaries!=null){
+            if(lat==null||lng==null){
+                for(SimpleVoluntary simpleVoluntary:simpleVoluntaries){
+                    simpleVoluntary.setDistance("未获取到你的位置");
+                }
+            }else{
+                for(SimpleVoluntary simpleVoluntary:simpleVoluntaries){
+                    if(simpleVoluntary.getAddressLatitude()==null||simpleVoluntary.getAddressLongitude()==null){
+                        simpleVoluntary.setDistance("志愿活动位置错误");
+                    }else{
+                        String distance= LocationUtil.getDistance(lng,lat,simpleVoluntary.getAddressLongitude(),simpleVoluntary.getAddressLatitude());
+                        simpleVoluntary.setDistance(distance);
+                    }
+                }
+            }
             return new ResultDto(200,"success",simpleVoluntaries);
         }else{
             return new ResultDto(200,"nodata",null);
@@ -42,6 +57,16 @@ public class VoluntaryServiceImpl implements VoluntaryService {
         if(count==1){
             return new ResultDto(200,"success",null);
         }else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @Override
+    public ResultDto findVoluntaryById(int id){
+        Voluntary voluntary=voluntaryDao.findVoluntaryById(id);
+        if(voluntary!=null){
+            return new ResultDto(200,"success",voluntary);
+        }else {
             return new ResultDto(200,"failure",null);
         }
     }
