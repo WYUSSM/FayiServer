@@ -10,7 +10,7 @@
 
     <delete id="quitOrganization">
         DELETE FROM organizationpeople_tab
-        WHERE id=#{id};
+        WHERE orgPeopleId=#{id};
     </delete>
 
     <select id="findAllUserByOrganizationId" resultType="com.sig.fayi.entity.User">
@@ -19,4 +19,9 @@
         WHERE organizationpeople_tab.organizationId=#{organizationId}
         AND organizationpeople_tab.userId=user_tab.id;
     </select>
+
+    <delete id="quitOrganizationByTow">
+        DELETE FROM organizationpeople_tab
+        WHERE userId=#{useId} AND organizationId=#{organizationId};
+    </delete>
 </mapper>
