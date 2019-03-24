@@ -24,4 +24,10 @@
         DELETE FROM organizationpeople_tab
         WHERE userId=#{useId} AND organizationId=#{organizationId};
     </delete>
+
+    <update id="updateFlag">
+        UPDATE organizationpeople_tab
+        SET flag='审核通过'
+        WHERE organizationId=#{organizationId} AND userId=#{useId};
+    </update>
 </mapper>

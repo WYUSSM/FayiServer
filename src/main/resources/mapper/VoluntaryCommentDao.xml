@@ -4,13 +4,68 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sig.fayi.dao.VoluntaryCommentDao">
 
+    <resultMap type="com.sig.fayi.entity.ActivityComment" id="CommentResult">
+        <id column="commentId" property="id"/>
+        <result column="activityId" property="activityId"/>
+        <result column="content" property="content"/>
+        <result column="time" property="time"/>
+        <result column="goodCount" property="goodCount"/>
+        <result column="replyCount" property="replyCount"/>
+        <association property="commentor" javaType="com.sig.fayi.entity.User" column="commentor" select="findUser">
+        </association>
+        <association property="commentor1" javaType="com.sig.fayi.entity.Organization" column="commentor1" select="findOrganization">
+        </association>
+        <collection property="activityGoodList" resultMap="GoodResult"/>
+        <collection property="activityReplyList" resultMap="ReplyResult"/>
+    </resultMap>
+    <resultMap type="com.sig.fayi.entity.ActivityGood" id="GoodResult">
+        <id column="goodId" property="goodId"/>
+        <result column="commentId" property="commentId"/>
+        <result column="gooder" property="gooder"/>
+        <result column="gooder1" property="gooder1"/>
+        <result column="good_time" property="good_time"/>
+    </resultMap>
+    <resultMap type="com.sig.fayi.entity.ActivityReply" id="ReplyResult">
+        <id column="replyId" property="replyId"/>
+        <result column="commentId" property="commentId"/>
+        <result column="reply_conent" property="reply_conent"/>
+        <result column="reply_time" property="reply_time"/>
+        <association property="responder" javaType="com.sig.fayi.entity.User" column="responder" select="findUser">
+        </association>
+        <association property="responder1" javaType="com.sig.fayi.entity.Organization" column="responder1" select="findOrganization">
+        </association>
+    </resultMap>
+    <select id="findGood" resultType="com.sig.fayi.entity.ActivityGood">
+        SELECT * FROM activitygood_tab WHERE commentId=#{000};
+    </select>
+    <select id="findUser" resultType="com.sig.fayi.entity.User">
+        SELECT * FROM user_tab WHERE id=#{000};
+    </select>
+    <select id="findOrganization" resultType="com.sig.fayi.entity.Organization">
+        SELECT * FROM organization_tab WHERE id=#{000};
+    </select>
     <select id="findCommentById" resultType="com.sig.fayi.entity.ActivityComment">
-
+        SELECT activitycomment_tab.*,activitygood_tab.*,activityreply_tab.*
+        FROM activitycomment_tab
+        LEFT OUTER JOIN activitygood_tab ON activitygood_tab.commentId=activitycomment_tab.commentId
+        LEFT OUTER JOIN activityreply_tab ON activityreply_tab.commentId=activitycomment_tab.commentId
+        WHERE activitycomment_tab.commentId=#{id};
     </select>
 
-    <insert id="addComment" parameterType="com.sig.fayi.entity.ActivityComment">
-
+    <insert id="addComment" parameterType="com.sig.fayi.entity.ActivityComment1">
+        INSERT INTO activitycomment_tab(activityId,commentor,commentor1,content,time,goodCount,replyCount,comment_read)
+        VALUES (#{activityComment.activityId},#{activityComment.commentor},#{activityComment.commentor1},#{activityComment.content},#{activityComment.time},#{activityComment.goodCount},#{activityComment.replyCount},#{activityComment.comment_read});
     </insert>
 
+    <delete id="deleteComment">
+        DELETE FROM activitycomment_tab
+        WHERE commentId=#{id};
+    </delete>
+
+    <update id="updateRead">
+        UPDATE activitycomment_tab
+        SET comment_read='已读'
+        WHERE commentId=#{id};
+    </update>
 
 </mapper>

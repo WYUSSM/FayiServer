@@ -21,4 +21,6 @@ public interface OrganizationPeopleDao {
     List<User> findAllUserByOrganizationId(@Param("organizationId") int organizationId);
 
     int quitOrganizationByTow(@Param("useId")int useId,@Param("organizationId") int organizationId);
+
+    int updateFlag(@Param("useId")int useId,@Param("organizationId") int organizationId);
 }

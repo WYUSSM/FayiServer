@@ -1,7 +1,10 @@
 package com.sig.fayi.dao;
 
-import com.sig.fayi.entity.ActivityReply;
+import com.sig.fayi.entity.ActivityReply1;
+import org.apache.ibatis.annotations.Param;
 
 public interface VoluntaryReplyDao {
-    int addReply(ActivityReply activityReply);
+    int addReply(@Param("activityReply") ActivityReply1 activityReply);
+
+    int deleteReply(@Param("id") int id);
 }

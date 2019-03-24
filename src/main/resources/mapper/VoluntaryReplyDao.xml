@@ -3,7 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sig.fayi.dao.VoluntaryReplyDao">
-    <insert id="addReply" parameterType="com.sig.fayi.entity.ActivityReply">
-
+    <insert id="addReply" parameterType="com.sig.fayi.entity.ActivityReply1">
+        INSERT INTO activityreply_tab(commentId,responder,responder1,reply_conent,reply_time,reply_read)
+        VALUES (#{activityReply.commentId},#{activityReply.responder},#{activityReply.responder1},#{activityReply.reply_conent},#{activityReply.reply_time},#{activityReply.reply_read});
     </insert>
+
+    <delete id="deleteReply">
+        DELETE FROM activityreply_tab
+        WHERE replyId=#{id};
+    </delete>
 </mapper>
