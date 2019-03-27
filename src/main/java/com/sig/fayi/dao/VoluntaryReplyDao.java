@@ -7,4 +7,8 @@ public interface VoluntaryReplyDao {
     int addReply(@Param("activityReply") ActivityReply1 activityReply);
 
     int deleteReply(@Param("id") int id);
+
+    int addReplyCount(@Param("id") int id);
+
+    int reduceReplyCount(@Param("id") int id);
 }

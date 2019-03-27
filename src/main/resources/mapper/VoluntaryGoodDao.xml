@@ -3,5 +3,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sig.fayi.dao.VoluntaryGoodDao">
+    <insert id="addGood" parameterType="com.sig.fayi.entity.ActivityGood">
+        INSERT INTO activitygood_tab(commentId,gooder,gooder1,good_time,good_read)
+        VALUES (#{activityGood.commentId},#{activityGood.gooder},#{activityGood.gooder1},#{activityGood.good_time},#{activityGood.good_read});
+    </insert>
 
+
+    <delete id="deleteGood">
+        DELETE FROM activitygood_tab
+        WHERE goodId=#{id};
+    </delete>
+
+    <update id="addGoodCount">
+        UPDATE activitycomment_tab
+        SET goodCount=goodCount+1
+        WHERE commentId=#{id};
+    </update>
+
+    <update id="reduceGoodCount">
+        UPDATE activitycomment_tab
+        SET goodCount=goodCount-1
+        WHERE commentId=#{id};
+    </update>
 </mapper>

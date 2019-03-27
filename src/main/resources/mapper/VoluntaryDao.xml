@@ -37,6 +37,7 @@
         <result column="time" property="time"/>
         <result column="goodCount" property="goodCount"/>
         <result column="replyCount" property="replyCount"/>
+        <result column="comment_read" property="comment_read"/>
         <association property="commentor" javaType="com.sig.fayi.entity.User" column="commentor" select="findUser">
         </association>
         <association property="commentor1" javaType="com.sig.fayi.entity.Organization" column="commentor1" select="findOrganization">
@@ -57,12 +58,14 @@
         <result column="gooder" property="gooder"/>
         <result column="gooder1" property="gooder1"/>
         <result column="good_time" property="good_time"/>
+        <result column="good_read" property="good_read"/>
     </resultMap>
     <resultMap type="com.sig.fayi.entity.ActivityReply" id="ReplyResult">
         <id column="replyId" property="replyId"/>
         <result column="commentId" property="commentId"/>
         <result column="reply_conent" property="reply_conent"/>
         <result column="reply_time" property="reply_time"/>
+        <result column="reply_read" property="reply_read"/>
         <association property="responder" javaType="com.sig.fayi.entity.User" column="responder" select="findUser">
         </association>
         <association property="responder1" javaType="com.sig.fayi.entity.Organization" column="responder1" select="findOrganization">
