@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sig.fayi.dao.GoodWelfareDao">
+
+    <insert id="addGoodWelfare" parameterType="com.sig.fayi.entity.GoodWelfare">
+        INSERT INTO goodwelfare_tab(title,demo,cover,url,time)
+        VALUES (#{goodWelfare.title},#{goodWelfare.demo},#{goodWelfare.cover},#{goodWelfare.url},#{goodWelfare.time});
+    </insert>
+
+    <delete id="deleteGoodWelfare">
+        DELETE FROM goodwelfare_tab
+        WHERE id=#{id};
+    </delete>
+
+    <select id="findAllGoodWelfare" resultType="com.sig.fayi.entity.GoodWelfare">
+        SELECT * FROM goodwelfare_tab
+        ORDER BY time DESC ;
+    </select>
+
+    <select id="findGoodWelfareById" resultType="com.sig.fayi.entity.GoodWelfare">
+        SELECT * FROM goodwelfare_tab
+        WHERE id=#{id};
+    </select>
+
+    <update id="changeGoodWelfareById" parameterType="com.sig.fayi.entity.GoodWelfare">
+        UPDATE goodwelfare_tab
+        <set>
+            <if test="goodWelfare.title!=null">
+                title=#{goodWelfare.title},
+            </if>
+            <if test="goodWelfare.demo!=null">
+                demo=#{goodWelfare.demo},
+            </if>
+            <if test="goodWelfare.url!=null">
+                url=#{goodWelfare.url},
+            </if>
+        </set>
+        WHERE id=#{goodWelfare.id};
+    </update>
+
+    <update id="changeCoverById">
+        UPDATE goodwelfare_tab
+        SET cover=#{cover}
+        WHERE id=#{id};
+    </update>
+</mapper>

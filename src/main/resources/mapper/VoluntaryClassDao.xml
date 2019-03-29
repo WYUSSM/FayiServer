@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sig.fayi.dao.VoluntaryClassDao">
+
+    <insert id="addVoluntaryClass" parameterType="com.sig.fayi.entity.VoluntaryClass">
+        INSERT INTO voluntaryclass_tab(title,demo,cover,url,time)
+        VALUES (#{voluntaryClass.title},#{voluntaryClass.demo},#{voluntaryClass.cover},#{voluntaryClass.url},#{voluntaryClass.time});
+    </insert>
+
+    <delete id="deleteVoluntaryClass">
+        DELETE FROM voluntaryclass_tab
+        WHERE id=#{id};
+    </delete>
+
+    <select id="findAllVoluntaryClass" resultType="com.sig.fayi.entity.VoluntaryClass">
+        SELECT * FROM voluntaryclass_tab
+        ORDER BY time DESC ;
+    </select>
+
+    <select id="findVoluntaryClassById" resultType="com.sig.fayi.entity.VoluntaryClass">
+        SELECT * FROM voluntaryclass_tab
+        WHEN id=#{id};
+    </select>
+
+    <update id="changeVoluntaryClassById">
+        UPDATE voluntaryclass_tab
+        <set>
+            <if test="voluntaryClass.title!=null">
+                title=#{voluntaryClass.title},
+            </if>
+            <if test="voluntaryClass.demo!=null">
+                demo=#{voluntaryClass.demo},
+            </if>
+            <if test="voluntaryClass.url!=null">
+                url=#{voluntaryClass.url},
+            </if>
+        </set>
+        WHERE id=#{voluntaryClass.id};
+    </update>
+
+    <update id="changeCoverById">
+        UPDATE voluntaryclass_tab
+        SET cover=#{cover}
+        WHERE id=#{id};
+    </update>
+</mapper>

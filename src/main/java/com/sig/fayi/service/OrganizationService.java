@@ -46,5 +46,7 @@ public interface OrganizationService {
 
     ResultDto findOrganitionByPhone(String phone);
 
+    ResultDto organizationRank();
+
 
 }

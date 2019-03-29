@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sig.fayi.dao.IdCardDao">
+
+    <insert id="upladIdCard" parameterType="com.sig.fayi.entity.IdCard">
+        INSERT INTO idcard_tab(idCard,positiveImage,negativeImage,flag,upload_time)
+        VALUES (#{idCard.idCard},#{idCard.positiveImage},#{idCard.negativeImage},#{idCard.flag},#{idCard.upload_time});
+    </insert>
+
+    <update id="changeIdCard">
+        UPDATE idcard_tab
+        <set>
+            <if test="idCard.idCard!=null">
+                idCard=#{idCard.idCard},
+            </if>
+            <if test="idCard.positiveImage!=null">
+                positiveImage=#{idCard.positiveImage},
+            </if>
+            <if test="idCard.negativeImage!=null">
+                negativeImage=#{idCard.negativeImage},
+            </if>
+            <if test="idCard.upload_time!=null">
+                upload_time=#{idCard.upload_time},
+            </if>
+        </set>
+        WHERE id=#{idCard.id}
+    </update>
+
+    <update id="changeUserIdcard">
+        UPDATE user_tab
+        SET idCard=#{idCard}
+        WHERE id=#{id};
+    </update>
+
+    <resultMap type="com.sig.fayi.entity.UserIdcard" id="UserIdcardResult">
+        <id column="id" property="id"/>
+        <result column="phone" property="phone"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="gender" property="gender"/>
+        <result column="birthday" property="birthday"/>
+        <result column="signature" property="signature"/>
+        <result column="headImage" property="headImage"/>
+        <result column="backgroundImage" property="backgroundImage"/>
+        <result column="address" property="address"/>
+        <result column="idCard" property="idCard"/>
+        <result column="volunteer_time" property="volunteer_time"/>
+        <result column="integral" property="integral"/>
+        <result column="flag" property="flag"/>
+        <result column="registerTime" property="registerTime"/>
+        <association property="userIdCard" javaType="com.sig.fayi.entity.IdCard" column="idCard" select="findIdCard"></association>
+    </resultMap>
+    <select id="findIdCard" resultType="com.sig.fayi.entity.IdCard">
+        SELECT * FROM idcard_tab WHERE idCard=#{000};
+    </select>
+    <select id="findAllUser" resultType="com.sig.fayi.entity.UserIdcard" resultMap="UserIdcardResult">
+        SELECT user_tab.*,idcard_tab.*
+        FROM user_tab
+        LEFT OUTER JOIN idcard_tab ON idcard_tab.idCard=user_tab.idCard
+        WHERE idcard_tab.flag='未审核'
+        ORDER BY upload_time DESC ;
+    </select>
+</mapper>

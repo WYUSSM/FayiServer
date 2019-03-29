@@ -90,10 +90,21 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
     }
 
+    @Override
     public ResultDto findOrganitionByPhone(String phone){
         Organization organization=organizationDao.findOrganitionByPhone(phone);
         if(organization!=null){
             return new ResultDto(200,"success",organization);
+        }else {
+            return new ResultDto(200,"nodata",null);
+        }
+    }
+
+    @Override
+    public ResultDto organizationRank(){
+        List<Organization> organizations=organizationDao.organizationRank();
+        if(organizations!=null){
+            return new ResultDto(200,"success",organizations);
         }else {
             return new ResultDto(200,"nodata",null);
         }

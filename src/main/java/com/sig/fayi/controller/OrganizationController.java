@@ -104,4 +104,10 @@ public class OrganizationController {
         String phone=request.getParameter("phone");
         return organizationService.findOrganitionByPhone(phone);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/organizationRank")
+    public ResultDto organizationRank(){
+        return organizationService.organizationRank();
+    }
 }
