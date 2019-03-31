@@ -1,5 +1,6 @@
 package com.sig.fayi.dao;
 
+import com.sig.fayi.entity.SimpleVoluntary;
 import com.sig.fayi.entity.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -75,5 +76,8 @@ public interface UserDao {//添加UserDao的test时，选中类名UserDao，右�
     User findUserByName(@Param("name") String name);
 
     int changePhoneById(@Param("id") int id,@Param("phone") String phone);
+
+    List<User> userRank();
+
 
 }

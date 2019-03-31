@@ -43,6 +43,6 @@
 
     <select id="organizationRank" resultType="com.sig.fayi.entity.Organization">
         SELECT * FROM organization_tab
-        ORDER BY volunteer_time;
+        ORDER BY volunteer_time DESC;
     </select>
 </mapper>

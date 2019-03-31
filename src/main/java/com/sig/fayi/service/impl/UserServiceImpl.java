@@ -151,4 +151,14 @@ public class UserServiceImpl implements UserService {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @Override
+    public ResultDto userRank(){
+        List<User> users=userDao.userRank();
+        if(users!=null){
+            return new ResultDto(200,"success",users);
+        }else {
+            return new ResultDto(200,"nodata",null);
+        }
+    }
 }

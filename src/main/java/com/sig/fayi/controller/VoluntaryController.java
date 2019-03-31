@@ -95,4 +95,11 @@ public class VoluntaryController extends BaseExceptionHandleAction {
         int id=Integer.parseInt(request.getParameter("id"));
         return voluntaryService.findVoluntaryById(id);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/findVoluntaryByUserId")
+    public ResultDto findVoluntaryByUserId(HttpServletRequest request){
+        int userId=Integer.parseInt(request.getParameter("userId"));
+        return voluntaryService.findVoluntaryByUserId(userId);
+    }
 }

@@ -62,4 +62,10 @@
         WHERE idcard_tab.flag='未审核'
         ORDER BY upload_time DESC ;
     </select>
+
+    <update id="examineIdCard">
+        UPDATE idcard_tab
+        SET flag='已审核',examineUser=#{examineUser},examine_time=#{examine_time}
+        WHERE id=#{id};
+    </update>
 </mapper>

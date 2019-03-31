@@ -166,4 +166,10 @@ public class UserController extends BaseExceptionHandleAction {
         String phone=request.getParameter("phone");
         return userService.changePhoneById(id,phone);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/userRank")
+    public ResultDto userRank(){
+        return userService.userRank();
+    }
 }

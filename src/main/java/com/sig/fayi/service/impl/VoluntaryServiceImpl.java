@@ -70,4 +70,14 @@ public class VoluntaryServiceImpl implements VoluntaryService {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @Override
+    public ResultDto findVoluntaryByUserId(int id){
+        List<SimpleVoluntary> simpleVoluntaries=voluntaryDao.findAllVoluntaryByUserId(id);
+        if(simpleVoluntaries!=null){
+            return new ResultDto(200,"success",simpleVoluntaries);
+        }else {
+            return new ResultDto(200,"nodata",null);
+        }
+    }
 }

@@ -12,4 +12,6 @@ public interface VoluntaryService {
     ResultDto addVoluntary(SimpleVoluntary simpleVoluntary);
 
     ResultDto findVoluntaryById(int id);
+
+    ResultDto findVoluntaryByUserId(int id);
 }

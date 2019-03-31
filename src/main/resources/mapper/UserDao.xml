@@ -87,4 +87,9 @@
         SET phone=#{phone}
         WHERE id=#{id};
     </update>
+
+    <select id="userRank" resultType="com.sig.fayi.entity.User">
+        SELECT * FROM user_tab
+        ORDER BY volunteer_time DESC ;
+    </select>
 </mapper>

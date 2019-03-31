@@ -79,4 +79,6 @@ public interface UserService {
      *@return com.sig.fayi.dto.ResultDto
      **/
     ResultDto changePhoneById(int id,String phone);
+
+    ResultDto userRank();
 }

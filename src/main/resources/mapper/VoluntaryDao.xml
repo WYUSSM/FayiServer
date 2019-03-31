@@ -112,4 +112,12 @@
         LEFT OUTER JOIN activityreply_tab ON activityreply_tab.commentId=activitycomment_tab.commentId
         WHERE voluntary_tab.id=#{id};
     </select>
+
+    <select id="findAllVoluntaryByUserId" resultType="com.sig.fayi.entity.SimpleVoluntary">
+        SELECT voluntary_tab.*
+        FROM voluntary_tab
+        LEFT OUTER JOIN activitysignup_tab ON activitysignup_tab.signupactivityId=voluntary_tab.id
+        WHERE activitysignup_tab.userId=#{id}
+        ORDER BY signUpTime DESC;
+    </select>
 </mapper>
