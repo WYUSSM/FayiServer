@@ -25,4 +25,16 @@
         SET goodCount=goodCount-1
         WHERE commentId=#{id};
     </update>
+
+    <select id="findGoodByGooder" resultType="com.sig.fayi.entity.ActivityGood">
+        SELECT *
+        FROM activitygood_tab
+        WHERE commentId=#{commentId} AND gooder=#{gooder};
+    </select>
+
+    <select id="findGoodByGooder1" resultType="com.sig.fayi.entity.ActivityGood">
+        SELECT *
+        FROM activitygood_tab
+        WHERE commentId=#{commentId} AND gooder1=#{gooder1};
+    </select>
 </mapper>

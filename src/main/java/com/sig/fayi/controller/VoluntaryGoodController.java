@@ -39,4 +39,6 @@ public class VoluntaryGoodController {
         int commentId=Integer.parseInt(request.getParameter("commentId"));
         return voluntaryGoodService.deleteGood(goodId,commentId);
     }
+
+
 }

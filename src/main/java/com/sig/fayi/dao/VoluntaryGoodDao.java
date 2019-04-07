@@ -12,4 +12,8 @@ public interface VoluntaryGoodDao {
     int addGoodCount(@Param("id") int id);
 
     int reduceGoodCount(@Param("id") int id);
+
+    ActivityGood findGoodByGooder(@Param("commentId") int commentId,@Param("gooder") int gooder);
+
+    ActivityGood findGoodByGooder1(@Param("commentId") int commentId,@Param("gooder1") int gooder1);
 }

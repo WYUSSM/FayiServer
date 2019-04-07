@@ -120,4 +120,11 @@
         WHERE activitysignup_tab.userId=#{id}
         ORDER BY signUpTime DESC;
     </select>
+
+    <select id="findAllVoluntaryByOrgId" resultType="com.sig.fayi.entity.SimpleVoluntary">
+        SELECT voluntary_tab.*
+        FROM voluntary_tab
+        WHERE organizationId=#{id}
+        ORDER BY createTime DESC;
+    </select>
 </mapper>

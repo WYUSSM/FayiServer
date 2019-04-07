@@ -109,4 +109,14 @@ public class OrganizationServiceImpl implements OrganizationService {
             return new ResultDto(200,"nodata",null);
         }
     }
+
+    @Override
+    public ResultDto findOrganizationById(int id){
+        Organization organization=organizationDao.findOrganizationById(id);
+        if(organization!=null){
+            return new ResultDto(200,"success",organization);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

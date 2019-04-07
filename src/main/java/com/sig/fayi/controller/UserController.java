@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class UserController extends BaseExceptionHandleAction {
      */
     @ResponseBody//将返回的数据处理为json
     @RequestMapping(value = "/findAllUser")
-    public ResultDto findAllUser(HttpServletRequest request, HttpServletResponse response) {
+    public ResultDto findAllUser(HttpServletRequest request, HttpServletResponse response,String callback) {
         List<User> userList = userService.findAllUser();
         if (userList != null && userList.size() > 0) {
             //ResultDto返回数据的封装类，参数使用规则可自定义
@@ -171,5 +172,12 @@ public class UserController extends BaseExceptionHandleAction {
     @RequestMapping(value = "/userRank")
     public ResultDto userRank(){
         return userService.userRank();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findUserById")
+    public ResultDto findUserById(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        return userService.findUserById(id);
     }
 }

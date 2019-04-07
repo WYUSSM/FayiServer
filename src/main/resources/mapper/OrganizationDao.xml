@@ -45,4 +45,9 @@
         SELECT * FROM organization_tab
         ORDER BY volunteer_time DESC;
     </select>
+
+    <select id="findOrganizationById" resultType="com.sig.fayi.entity.Organization">
+        SELECT * FROM organization_tab
+        WHERE id=#{id};
+    </select>
 </mapper>

@@ -161,4 +161,14 @@ public class UserServiceImpl implements UserService {
             return new ResultDto(200,"nodata",null);
         }
     }
+
+    @Override
+    public ResultDto findUserById(int id){
+        User user=userDao.findUserById(id);
+        if(user!=null){
+            return new ResultDto(200,"success",user);
+        }else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

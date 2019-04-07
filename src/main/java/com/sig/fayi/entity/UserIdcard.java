@@ -17,7 +17,7 @@ public class UserIdcard {
     private double volunteer_time;
     private int integral;
     private String flag;
-    private Date registerTime;
+    private Date register_time;
     private IdCard userIdCard;
 
     public int getId() {
@@ -132,12 +132,12 @@ public class UserIdcard {
         this.flag = flag;
     }
 
-    public Date getRegisterTime() {
-        return registerTime;
+    public Date getRegister_time() {
+        return register_time;
     }
 
-    public void setRegisterTime(Date registerTime) {
-        this.registerTime = registerTime;
+    public void setRegister_time(Date register_time) {
+        this.register_time = register_time;
     }
 
     public IdCard getUserIdCard() {

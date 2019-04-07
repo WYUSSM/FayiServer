@@ -14,12 +14,32 @@ public class VoluntaryGoodServiceImpl implements VoluntaryGoodService {
 
     @Override
     public ResultDto addGood(ActivityGood activityGood){
-        int count=voluntaryGoodDao.addGood(activityGood);
-        if(count==1){
-            voluntaryGoodDao.addGoodCount(activityGood.getCommentId());
-            return new ResultDto(200,"success",null);
+        if(activityGood.getGooder()!=0){
+            ActivityGood activityGood1=voluntaryGoodDao.findGoodByGooder(activityGood.getCommentId(),activityGood.getGooder());
+            if(activityGood1!=null){
+                return new ResultDto(200,"failure",null);
+            }else {
+                int count=voluntaryGoodDao.addGood(activityGood);
+                if(count==1){
+                    voluntaryGoodDao.addGoodCount(activityGood.getCommentId());
+                    return new ResultDto(200,"success",null);
+                }else {
+                    return new ResultDto(200,"failure",null);
+                }
+            }
         }else {
-            return new ResultDto(200,"failure",null);
+            ActivityGood activityGood1=voluntaryGoodDao.findGoodByGooder1(activityGood.getCommentId(),activityGood.getGooder());
+            if(activityGood1!=null){
+                return new ResultDto(200,"failure",null);
+            }else {
+                int count=voluntaryGoodDao.addGood(activityGood);
+                if(count==1){
+                    voluntaryGoodDao.addGoodCount(activityGood.getCommentId());
+                    return new ResultDto(200,"success",null);
+                }else {
+                    return new ResultDto(200,"failure",null);
+                }
+            }
         }
     }
 

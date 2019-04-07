@@ -15,5 +15,7 @@ public interface VoluntaryDao {
 
     Voluntary findVoluntaryById(@Param("id") int id);
 
-    List<SimpleVoluntary> findAllVoluntaryByUserId(int id);
+    List<SimpleVoluntary> findAllVoluntaryByUserId(@Param("id") int id);
+
+    List<SimpleVoluntary> findAllVoluntaryByOrgId(@Param("id") int id);
 }

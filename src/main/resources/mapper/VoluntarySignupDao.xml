@@ -25,4 +25,21 @@
         FROM activitysignup_tab
         WHERE signupactivityId=#{signupactivityId} AND userId=#{userId};
     </select>
+
+    <update id="addSignUpPeopleNum">
+        UPDATE voluntary_tab
+        SET signUpNum=signUpNum+1
+        WHERE id=#{signupactivityId};
+    </update>
+
+    <select id="findVoluntaryById" resultType="com.sig.fayi.entity.SimpleVoluntary">
+        SELECT * FROM voluntary_tab
+        WHERE id=#{id};
+    </select>
+
+    <update id="reduceSignUpPeopleNum">
+        UPDATE voluntary_tab
+        SET signUpNum=signUpNum-1
+        WHERE id=#{signupactivityId};
+    </update>
 </mapper>

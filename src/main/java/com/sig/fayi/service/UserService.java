@@ -81,4 +81,6 @@ public interface UserService {
     ResultDto changePhoneById(int id,String phone);
 
     ResultDto userRank();
+
+    ResultDto findUserById(int id);
 }

@@ -4,6 +4,7 @@ import com.sig.fayi.dao.VoluntarySignupDao;
 import com.sig.fayi.dto.ResultDto;
 import com.sig.fayi.entity.ActivitySignUp;
 import com.sig.fayi.entity.SignupPeople;
+import com.sig.fayi.entity.SimpleVoluntary;
 import com.sig.fayi.entity.User;
 import com.sig.fayi.service.VoluntarySignupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,17 @@ public class VoluntarySignupServiceImpl implements VoluntarySignupService {
 
     @Override
     public ResultDto signupVoluntary(SignupPeople signupPeople){
-        int count=voluntarySignupDao.signupVoluntary(signupPeople);
-        if(count==1){
-            return new ResultDto(200,"success",null);
-        }else{
-            return new ResultDto(200,"failure",null);
+        SimpleVoluntary simpleVoluntary=voluntarySignupDao.findVoluntaryById(signupPeople.getSignupactivityId());
+        if(simpleVoluntary.getPeopleNum()>simpleVoluntary.getSignUpNum()){
+            int count=voluntarySignupDao.signupVoluntary(signupPeople);
+            if(count==1){
+                voluntarySignupDao.addSignUpPeopleNum(signupPeople.getSignupactivityId());
+                return new ResultDto(200,"success",null);
+            }else{
+                return new ResultDto(200,"failure",null);
+            }
+        }else {
+            return new ResultDto(200,"people_enough",null);
         }
     }
 
@@ -30,6 +37,7 @@ public class VoluntarySignupServiceImpl implements VoluntarySignupService {
     public ResultDto quitVoluntary(int signupactivityId,int userId){
         int count=voluntarySignupDao.quitVoluntary(signupactivityId,userId);
         if(count==1){
+            voluntarySignupDao.reduceSignUpPeopleNum(signupactivityId);
             return new ResultDto(200,"success",null);
         }else {
             return new ResultDto(200,"failure",null);

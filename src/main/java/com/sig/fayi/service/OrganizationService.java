@@ -48,5 +48,7 @@ public interface OrganizationService {
 
     ResultDto organizationRank();
 
+    ResultDto findOrganizationById(int id);
+
 
 }

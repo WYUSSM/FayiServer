@@ -110,4 +110,11 @@ public class OrganizationController {
     public ResultDto organizationRank(){
         return organizationService.organizationRank();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/findOrganizationById")
+    public ResultDto findOrganizationById(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        return organizationService.findOrganizationById(id);
+    }
 }

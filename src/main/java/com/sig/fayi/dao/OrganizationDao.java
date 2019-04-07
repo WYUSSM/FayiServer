@@ -45,5 +45,7 @@ public interface OrganizationDao {
 
     List<Organization> organizationRank();
 
+    Organization findOrganizationById(@Param("id") int id);
+
 
 }

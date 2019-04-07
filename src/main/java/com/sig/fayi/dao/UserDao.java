@@ -80,4 +80,5 @@ public interface UserDao {//添加UserDao的test时，选中类名UserDao，右�
     List<User> userRank();
 
 
+
 }
