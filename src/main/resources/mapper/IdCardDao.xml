@@ -24,6 +24,7 @@
             <if test="idCard.upload_time!=null">
                 upload_time=#{idCard.upload_time},
             </if>
+            flag='未审核'
         </set>
         WHERE id=#{idCard.id}
     </update>
@@ -65,7 +66,7 @@
 
     <update id="examineIdCard">
         UPDATE idcard_tab
-        SET flag='已审核',examineUser=#{examineUser},examine_time=#{examine_time}
+        SET flag=#{flag},examineUser=#{examineUser},examine_time=#{examine_time}
         WHERE id=#{id};
     </update>
 </mapper>

@@ -117,4 +117,28 @@ public class OrganizationController {
         int id=Integer.parseInt(request.getParameter("id"));
         return organizationService.findOrganizationById(id);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/examine")
+    public ResultDto examine(HttpServletRequest request){
+        int organizationId=Integer.parseInt(request.getParameter("organizationId"));
+        int examineUser=Integer.parseInt(request.getParameter("examineUser"));
+        String flag=request.getParameter("flag");
+        return organizationService.examine(organizationId,examineUser,new Date(),flag);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/updateProof")
+    public ResultDto updateProof(@RequestParam(value = "file") MultipartFile[] file,HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        if (file.length ==4) {
+            String handIdCard=FileUploadUtil.uploadFile(file[0],request);
+            String positiveImage=FileUploadUtil.uploadFile(file[1],request);
+            String negativeImage=FileUploadUtil.uploadFile(file[2],request);
+            String proofImage=FileUploadUtil.uploadFile(file[3],request);
+            return organizationService.updateProof(id,handIdCard,positiveImage,negativeImage,proofImage);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

@@ -17,7 +17,7 @@ public interface IdCardDao {
 
     List<UserIdcard> findAllUser();
 
-    int examineIdCard(@Param("id") int id,@Param("examineUser") int examineUser,@Param("examine_time") Date examine_time);
+    int examineIdCard(@Param("id") int id,@Param("examineUser") int examineUser,@Param("examine_time") Date examine_time,@Param("flag") String flag);
 
 
 

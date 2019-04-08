@@ -4,6 +4,7 @@ import com.sig.fayi.entity.OrganizationPeople;
 import com.sig.fayi.entity.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrganizationPeopleDao {
@@ -22,5 +23,11 @@ public interface OrganizationPeopleDao {
 
     int quitOrganizationByTow(@Param("useId")int useId,@Param("organizationId") int organizationId);
 
-    int updateFlag(@Param("useId")int useId,@Param("organizationId") int organizationId);
+    int updateFlag(@Param("useId")int useId, @Param("organizationId") int organizationId,@Param("signUp_time") Date signUp_time);
+
+    int addPeopleNum(@Param("organizationId") int organizationId);
+
+    int reducePeopleNum(@Param("organizationId") int organizationId);
+
+    OrganizationPeople findOrganizationPeople(@Param("useId")int useId,@Param("organizationId") int organizationId);
 }

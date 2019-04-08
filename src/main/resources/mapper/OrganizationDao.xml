@@ -50,4 +50,16 @@
         SELECT * FROM organization_tab
         WHERE id=#{id};
     </select>
+
+    <update id="examine">
+        UPDATE organization_tab
+        SET flag=#{flag},examineUser=#{examineUser},examine_time=#{examine_time}
+        WHERE id=#{organizationId};
+    </update>
+
+    <update id="updateProof">
+        UPDATE organization_tab
+        SET flag='未审核',handIdCard=#{handIdCard},positiveImage=#{positiveImage},negativeImage=#{negativeImage},proofImage=#{proofImage}
+        WHERE id=#{id};
+    </update>
 </mapper>

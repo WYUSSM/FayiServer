@@ -26,6 +26,7 @@ public class IdCardController {
     public ResultDto upladIdCard(@RequestParam(value = "file") MultipartFile[] file, HttpServletRequest request){
         IdCard idCard1=new IdCard();
         String idCard=request.getParameter("idCard");
+        int userId=Integer.parseInt(request.getParameter("userId"));
         idCard1.setIdCard(idCard);
         idCard1.setFlag("未审核");
         idCard1.setUpload_time(new Date());
@@ -34,7 +35,7 @@ public class IdCardController {
             String negativeImage= FileUploadUtil.uploadFile(file[1],request);
             idCard1.setPositiveImage(positiveImage);
             idCard1.setNegativeImage(negativeImage);
-            return idCardService.upladIdCard(idCard1);
+            return idCardService.upladIdCard(idCard1,userId);
         }else{
             return new ResultDto(200,"failure",null);
         }
@@ -45,6 +46,7 @@ public class IdCardController {
     public ResultDto changeIdCard(@RequestParam(value = "file") MultipartFile[] file, HttpServletRequest request){
         IdCard idCard1=new IdCard();
         int id=Integer.parseInt(request.getParameter("id"));
+        int userId=Integer.parseInt(request.getParameter("userId"));
         String idCard=request.getParameter("idCard");
         idCard1.setId(id);
         idCard1.setIdCard(idCard);
@@ -54,7 +56,7 @@ public class IdCardController {
             String negativeImage= FileUploadUtil.uploadFile(file[1],request);
             idCard1.setPositiveImage(positiveImage);
             idCard1.setNegativeImage(negativeImage);
-            return idCardService.changeIdCard(idCard1);
+            return idCardService.changeIdCard(idCard1,userId);
         }else{
             return new ResultDto(200,"failure",null);
         }
@@ -71,7 +73,8 @@ public class IdCardController {
     public ResultDto examineIdCard(HttpServletRequest request){
         int id=Integer.parseInt(request.getParameter("id"));
         int examineUser=Integer.parseInt(request.getParameter("examineUser"));
+        String flag=request.getParameter("flag");
         Date examine_time=new Date();
-        return idCardService.examineIdCard(id,examineUser,examine_time);
+        return idCardService.examineIdCard(id,examineUser,examine_time,flag);
     }
 }

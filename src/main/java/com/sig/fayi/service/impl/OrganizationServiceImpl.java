@@ -7,6 +7,7 @@ import com.sig.fayi.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -115,6 +116,26 @@ public class OrganizationServiceImpl implements OrganizationService {
         Organization organization=organizationDao.findOrganizationById(id);
         if(organization!=null){
             return new ResultDto(200,"success",organization);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @Override
+    public ResultDto examine(int organizationId, int examineUser, Date examine_time, String flag){
+        int count=organizationDao.examine(organizationId,examineUser,examine_time,flag);
+        if(count==1){
+            return new ResultDto(200,"success",null);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @Override
+    public ResultDto updateProof(int id,String handIdCard,String positiveImage,String negativeImage,String proofImage){
+        int count=organizationDao.updateProof(id,handIdCard,positiveImage,negativeImage,proofImage);
+        if(count==1){
+            return new ResultDto(200,"success",null);
         }else {
             return new ResultDto(200,"failure",null);
         }

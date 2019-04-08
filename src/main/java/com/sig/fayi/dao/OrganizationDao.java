@@ -3,6 +3,7 @@ package com.sig.fayi.dao;
 import com.sig.fayi.entity.Organization;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrganizationDao {
@@ -47,5 +48,9 @@ public interface OrganizationDao {
 
     Organization findOrganizationById(@Param("id") int id);
 
+
+    int examine(@Param("organizationId") int organizationId,@Param("examineUser") int examineUser,@Param("examine_time") Date examine_time,@Param("flag") String flag);
+
+    int updateProof(@Param("id") int id,@Param("handIdCard") String handIdCard,@Param("positiveImage") String positiveImage,@Param("negativeImage") String negativeImage,@Param("proofImage") String proofImage);
 
 }

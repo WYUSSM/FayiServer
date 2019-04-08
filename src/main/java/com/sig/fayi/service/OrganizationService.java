@@ -3,6 +3,7 @@ package com.sig.fayi.service;
 import com.sig.fayi.dto.ResultDto;
 import com.sig.fayi.entity.Organization;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrganizationService {
@@ -49,6 +50,10 @@ public interface OrganizationService {
     ResultDto organizationRank();
 
     ResultDto findOrganizationById(int id);
+
+    ResultDto examine(int organizationId, int examineUser, Date examine_time, String flag);
+
+    ResultDto updateProof(int id,String handIdCard,String positiveImage,String negativeImage,String proofImage);
 
 
 }

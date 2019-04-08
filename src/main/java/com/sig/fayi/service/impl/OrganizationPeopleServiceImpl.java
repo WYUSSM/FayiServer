@@ -9,6 +9,7 @@ import com.sig.fayi.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,6 +41,7 @@ public class OrganizationPeopleServiceImpl implements OrganizationPeopleService 
     public ResultDto quitOrganization(int userId,int organizationId){
         int count=organizationPeopleDao.quitOrganizationByTow(userId,organizationId);
         if(count==1){
+            organizationPeopleDao.reducePeopleNum(organizationId);
             return new ResultDto(200,"success",null);
         }else {
             return new ResultDto(200,"failure",null);
@@ -53,6 +55,43 @@ public class OrganizationPeopleServiceImpl implements OrganizationPeopleService 
             return new ResultDto(200,"nodata",null);
         }else {
             return new ResultDto(200,"success",userList);
+        }
+    }
+
+    @Override
+    public ResultDto findOrganizationPeople(int useId,int organizationId){
+        OrganizationPeople organizationPeople=organizationPeopleDao.findOrganizationPeople(useId,organizationId);
+        if(organizationPeople!=null){
+            if(organizationPeople.getFlag().equals("审核中")){
+                return new ResultDto(200,"examineing",organizationPeople);
+            }else if(organizationPeople.getFlag().equals("审核通过")){
+                return new ResultDto(200,"examineover",organizationPeople);
+            }else {
+                return new ResultDto(200,"failure",organizationPeople);
+            }
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @Override
+    public ResultDto examine(int useId,int organizationId,String flag){
+        if(flag.equals("审核通过")){
+            int count=organizationPeopleDao.updateFlag(useId,organizationId,new Date());
+            if(count==1){
+                organizationPeopleDao.addPeopleNum(organizationId);
+                return new ResultDto(200,"success",null);
+            }else {
+                return new ResultDto(200,"failure",null);
+            }
+        }else {
+            int count=organizationPeopleDao.quitOrganizationByTow(useId,organizationId);
+            if(count==1){
+                organizationPeopleDao.reducePeopleNum(organizationId);
+                return new ResultDto(200,"success",null);
+            }else {
+                return new ResultDto(200,"failure",null);
+            }
         }
     }
 }

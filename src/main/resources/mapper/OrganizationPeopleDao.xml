@@ -27,7 +27,25 @@
 
     <update id="updateFlag">
         UPDATE organizationpeople_tab
-        SET flag='审核通过'
+        SET flag='审核通过',signUp_time=#{signUp_time}
         WHERE organizationId=#{organizationId} AND userId=#{useId};
     </update>
+
+    <update id="addPeopleNum">
+        UPDATE organization_tab
+        SET peopleNum=peopleNum+1
+        WHERE id=#{organizationId};
+    </update>
+
+    <update id="reducePeopleNum">
+        UPDATE organization_tab
+        SET peopleNum=peopleNum-1
+        WHERE id=#{organizationId};
+    </update>
+
+    <select id="findOrganizationPeople" resultType="com.sig.fayi.entity.OrganizationPeople">
+        SELECT *
+        FROM organizationpeople_tab
+        WHERE organizationId=#{organizationId} AND userId=#{useId};
+    </select>
 </mapper>

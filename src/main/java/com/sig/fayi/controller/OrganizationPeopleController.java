@@ -28,25 +28,43 @@ public class OrganizationPeopleController {
         return organizationPeopleService.joinOrganization(organizationPeople);
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/quitOrganizationById")
-    public ResultDto quitOrganizationById(HttpServletRequest request){
-        int id=Integer.parseInt(request.getParameter("id"));
-        return organizationPeopleService.quitOrganizationById(id);
-    }
+//    @ResponseBody
+//    @RequestMapping(value = "/quitOrganizationById")
+//    public ResultDto quitOrganizationById(HttpServletRequest request){
+//        int id=Integer.parseInt(request.getParameter("id"));
+//        return organizationPeopleService.quitOrganizationById(id);
+//    }
 
-    @ResponseBody
-    @RequestMapping(value = "/quitOrganization")
-    public ResultDto quitOrganization(HttpServletRequest request){
-        int userId=Integer.parseInt(request.getParameter("userId"));
-        int organizationId=Integer.parseInt(request.getParameter("organizationId"));
-        return organizationPeopleService.quitOrganization(userId,organizationId);
-    }
+//    @ResponseBody
+//    @RequestMapping(value = "/quitOrganization")
+//    public ResultDto quitOrganization(HttpServletRequest request){
+//        int userId=Integer.parseInt(request.getParameter("userId"));
+//        int organizationId=Integer.parseInt(request.getParameter("organizationId"));
+//        return organizationPeopleService.quitOrganization(userId,organizationId);
+//    }
 
     @ResponseBody
     @RequestMapping(value = "/findAllUserByOrganizationId")
     public ResultDto findAllUserByOrganizationId(HttpServletRequest request){
         int organizationId=Integer.parseInt(request.getParameter("organizationId"));
         return organizationPeopleService.findAllUserByOrganizationId(organizationId);
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/findOrganizationPeople")
+    public ResultDto findOrganizationPeople(HttpServletRequest request){
+        int useId=Integer.parseInt(request.getParameter("userId"));
+        int organizationId=Integer.parseInt(request.getParameter("organizationId"));
+        return organizationPeopleService.findOrganizationPeople(useId,organizationId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/examine")
+    public ResultDto examine(HttpServletRequest request){
+        int useId=Integer.parseInt(request.getParameter("userId"));
+        int organizationId=Integer.parseInt(request.getParameter("organizationId"));
+        String flag=request.getParameter("flag");
+        return organizationPeopleService.examine(useId,organizationId,flag);
     }
 }

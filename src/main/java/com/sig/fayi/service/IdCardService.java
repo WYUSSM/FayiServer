@@ -7,13 +7,13 @@ import java.util.Date;
 
 public interface IdCardService {
 
-    ResultDto upladIdCard(IdCard idCard);
+    ResultDto upladIdCard(IdCard idCard,int userId);
 
-    ResultDto changeIdCard(IdCard idCard);
+    ResultDto changeIdCard(IdCard idCard,int userId);
 
     ResultDto findAllUser();
 
-    ResultDto examineIdCard(int id, int examineUser, Date examine_time);
+    ResultDto examineIdCard(int id, int examineUser, Date examine_time,String flag);
 
 
 }

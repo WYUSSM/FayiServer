@@ -12,5 +12,9 @@ public interface OrganizationPeopleService {
 
     ResultDto findAllUserByOrganizationId(int organizationId);
 
+    ResultDto findOrganizationPeople(int useId,int organizationId);
+
+    ResultDto examine(int useId,int organizationId,String flag);
+
 
 }
