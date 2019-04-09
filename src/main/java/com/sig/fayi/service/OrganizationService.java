@@ -55,5 +55,7 @@ public interface OrganizationService {
 
     ResultDto updateProof(int id,String handIdCard,String positiveImage,String negativeImage,String proofImage);
 
+    ResultDto findRankById(int id);
+
 
 }

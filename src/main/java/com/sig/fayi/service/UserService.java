@@ -83,4 +83,6 @@ public interface UserService {
     ResultDto userRank();
 
     ResultDto findUserById(int id);
+
+    ResultDto findRankByUserId(int userId);
 }

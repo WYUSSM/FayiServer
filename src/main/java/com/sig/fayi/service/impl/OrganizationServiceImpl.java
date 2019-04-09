@@ -140,4 +140,19 @@ public class OrganizationServiceImpl implements OrganizationService {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @Override
+    public ResultDto findRankById(int id){
+        List<Organization> organizations=organizationDao.organizationRank();
+        if(organizations!=null){
+            for(int i=0;i<organizations.size();i++){
+                if(organizations.get(i).getId()==id){
+                    return new ResultDto(200,"success",Integer.toString(i+1));
+                }
+            }
+            return new ResultDto(200,"failure",null);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

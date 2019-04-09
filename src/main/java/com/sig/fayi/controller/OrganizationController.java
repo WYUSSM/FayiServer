@@ -141,4 +141,11 @@ public class OrganizationController {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/findRankById")
+    public ResultDto findRankById(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        return organizationService.findRankById(id);
+    }
 }

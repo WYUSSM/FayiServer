@@ -180,4 +180,11 @@ public class UserController extends BaseExceptionHandleAction {
         int id=Integer.parseInt(request.getParameter("id"));
         return userService.findUserById(id);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/findRankByUserId")
+    public ResultDto findRankByUserId(HttpServletRequest request){
+        int userId=Integer.parseInt(request.getParameter("userId"));
+        return userService.findRankByUserId(userId);
+    }
 }

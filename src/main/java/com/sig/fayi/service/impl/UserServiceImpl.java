@@ -171,4 +171,19 @@ public class UserServiceImpl implements UserService {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @Override
+    public ResultDto findRankByUserId(int userId){
+        List<User> users=userDao.userRank();
+        if(users!=null){
+            for(int i=0;i<users.size();i++){
+                if(users.get(i).getId()==userId){
+                    return new ResultDto(200,"success",Integer.toString(i+1));
+                }
+            }
+            return new ResultDto(200,"failure",null);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }
