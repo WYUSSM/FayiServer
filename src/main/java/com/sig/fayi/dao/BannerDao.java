@@ -25,4 +25,10 @@ public interface BannerDao {
      **/
     int insertBanner(@Param("homeBanner") HomeBanner homeBanner);
 
+    int editBanner(@Param("homeBanner") HomeBanner homeBanner);
+
+    int deleteBanner(@Param("id") int id);
+
+    int changeImage(@Param("image") String image,@Param("id") int id);
+
 }

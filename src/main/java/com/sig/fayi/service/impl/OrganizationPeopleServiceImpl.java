@@ -2,10 +2,13 @@ package com.sig.fayi.service.impl;
 
 import com.sig.fayi.dao.OrganizationPeopleDao;
 import com.sig.fayi.dto.ResultDto;
+import com.sig.fayi.entity.Message;
+import com.sig.fayi.entity.Organization;
 import com.sig.fayi.entity.OrganizationPeople;
 import com.sig.fayi.entity.User;
 import com.sig.fayi.service.OrganizationPeopleService;
 import com.sig.fayi.service.OrganizationService;
+import com.sig.fayi.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +22,16 @@ public class OrganizationPeopleServiceImpl implements OrganizationPeopleService 
 
     @Override
     public ResultDto joinOrganization(OrganizationPeople organizationPeople){
-        int count=organizationPeopleDao.signUpOrganization(organizationPeople);
-        if(count==1){
-            return new ResultDto(200,"success",null);
+        Organization organization=organizationPeopleDao.findOrgByUserId(organizationPeople.getUserId());
+        if(organization!=null){
+            return new ResultDto(200,"havedorg",null);
         }else {
-            return new ResultDto(200,"failure",null);
+            int count=organizationPeopleDao.signUpOrganization(organizationPeople);
+            if(count==1){
+                return new ResultDto(200,"success",null);
+            }else {
+                return new ResultDto(200,"failure",null);
+            }
         }
     }
 
@@ -80,6 +88,12 @@ public class OrganizationPeopleServiceImpl implements OrganizationPeopleService 
             int count=organizationPeopleDao.updateFlag(useId,organizationId,new Date());
             if(count==1){
                 organizationPeopleDao.addPeopleNum(organizationId);
+                Message message=new Message();
+                message.setOrganizationId(organizationId);
+                message.setUserId(useId);
+                message.setContent("你已成功加入本组织！");
+                message.setTime(new Date());
+                organizationPeopleDao.addMessage(message);
                 return new ResultDto(200,"success",null);
             }else {
                 return new ResultDto(200,"failure",null);
@@ -92,6 +106,16 @@ public class OrganizationPeopleServiceImpl implements OrganizationPeopleService 
             }else {
                 return new ResultDto(200,"failure",null);
             }
+        }
+    }
+
+    @Override
+    public ResultDto findOrgByUserId(int userId){
+        Organization organization=organizationPeopleDao.findOrgByUserId(userId);
+        if(organization==null){
+            return new ResultDto(200,"noorg",null);
+        }else {
+            return new ResultDto(200,"success",organization);
         }
     }
 }

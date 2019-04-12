@@ -90,4 +90,24 @@ public class VoluntaryServiceImpl implements VoluntaryService {
             return new ResultDto(200,"nodata",null);
         }
     }
+
+    @Override
+    public ResultDto deleteVoluntary(int id){
+        int count=voluntaryDao.deleteVoluntary(id);
+        if(count==1){
+            return new ResultDto(200,"success",null);
+        }else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @Override
+    public ResultDto editVoluntary(SimpleVoluntary simpleVoluntary){
+        int count=voluntaryDao.editVoluntary(simpleVoluntary);
+        if(count==1){
+            return new ResultDto(200,"success",null);
+        }else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package com.sig.fayi.dao;
 
+import com.sig.fayi.entity.Message;
+import com.sig.fayi.entity.Organization;
 import com.sig.fayi.entity.OrganizationPeople;
 import com.sig.fayi.entity.User;
 import org.apache.ibatis.annotations.Param;
@@ -30,4 +32,8 @@ public interface OrganizationPeopleDao {
     int reducePeopleNum(@Param("organizationId") int organizationId);
 
     OrganizationPeople findOrganizationPeople(@Param("useId")int useId,@Param("organizationId") int organizationId);
+
+    Organization findOrgByUserId(@Param("userId") int userId);
+
+    int addMessage(@Param("message") Message message);
 }

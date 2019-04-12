@@ -64,6 +64,8 @@ public class OrganizationController {
         String email=request.getParameter("email");
         organization.setEmail(email);
         organization.setRegister_time(new Date());
+        String demo=request.getParameter("demo");
+        organization.setDemo(demo);
         if (file.length ==4) {
             String handIdCard=FileUploadUtil.uploadFile(file[0],request);
             organization.setHandIdCard(handIdCard);

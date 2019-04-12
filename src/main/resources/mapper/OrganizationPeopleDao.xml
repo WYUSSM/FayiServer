@@ -48,4 +48,14 @@
         FROM organizationpeople_tab
         WHERE organizationId=#{organizationId} AND userId=#{useId};
     </select>
+
+    <select id="findOrgByUserId" resultType="com.sig.fayi.entity.Organization">
+        SELECT organization_tab.*
+        FROM organizationpeople_tab,organization_tab
+        WHERE organization_tab.id=organizationpeople_tab.organizationId AND organizationpeople_tab.userId=#{useId} AND (organizationpeople_tab.flag='审核通过' OR organizationpeople_tab.flag='审核中');
+    </select>
+
+    <insert id="addMessage" parameterType="com.sig.fayi.entity.Message">
+        INSERT INTO message_tab(organizationId,userId,content,time) VALUES(#{message.organizationId},#{message.userId},#{message.content},#{message.time});
+    </insert>
 </mapper>

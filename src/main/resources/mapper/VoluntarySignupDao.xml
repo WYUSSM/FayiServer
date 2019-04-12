@@ -42,4 +42,20 @@
         SET signUpNum=signUpNum-1
         WHERE id=#{signupactivityId};
     </update>
+
+    <update id="signIn">
+        UPDATE activitysignup_tab
+        SET signInFlag='签到成功',signInTime=#{signInTime}
+        WHERE signupactivityId=#{signupactivityId} AND userId=#{userId};
+    </update>
+
+    <insert id="addMessage" parameterType="com.sig.fayi.entity.Message">
+        INSERT INTO message_tab(organizationId,userId,content,time) VALUES(#{message.organizationId},#{message.userId},#{message.content},#{message.time});
+    </insert>
+
+    <update id="addVolunteerTime">
+        UPDATE user_tab
+        SET volunteer_time=volunteer_time+#{voluntaryTime}
+        WHERE id=#{userId};
+    </update>
 </mapper>

@@ -19,4 +19,21 @@
     <insert id="insertBanner" useGeneratedKeys="true" keyProperty="homeBanner.id">
         INSERT INTO homebanner_tab(image,url,demo,time) VALUES(#{homeBanner.image},#{homeBanner.url},#{homeBanner.demo},#{homeBanner.time});
     </insert>
+
+    <update id="editBanner" parameterType="com.sig.fayi.entity.HomeBanner">
+        UPDATE homebanner_tab
+        SET url=#{homeBanner.url},demo=#{homeBanner.demo}
+        WHERE id=#{homeBanner.id};
+    </update>
+
+    <delete id="deleteBanner">
+        DELETE FROM homebanner_tab
+        WHERE id=#{id};
+    </delete>
+
+    <update id="changeImage">
+        UPDATE homebanner_tab
+        SET image=#{image}
+        WHERE id=#{id};
+    </update>
 </mapper>

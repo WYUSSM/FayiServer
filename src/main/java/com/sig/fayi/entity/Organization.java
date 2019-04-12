@@ -23,6 +23,7 @@ public class Organization {
     private int examineUser;
     private Date examine_time;
     private Date register_time;
+    private String demo;
 
     public Organization(){
 
@@ -186,5 +187,13 @@ public class Organization {
 
     public void setRegister_time(Date register_time) {
         this.register_time = register_time;
+    }
+
+    public String getDemo() {
+        return demo;
+    }
+
+    public void setDemo(String demo) {
+        this.demo = demo;
     }
 }

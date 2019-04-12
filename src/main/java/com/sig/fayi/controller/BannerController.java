@@ -50,4 +50,33 @@ public class BannerController extends BaseExceptionHandleAction {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/editBanner")
+    public ResultDto editBanner(@RequestParam(value = "file") MultipartFile[] file,HttpServletRequest request){
+        HomeBanner homeBanner=new HomeBanner();
+        homeBanner.setId(Integer.parseInt(request.getParameter("id")));
+        homeBanner.setDemo(request.getParameter("demo"));
+        homeBanner.setUrl(request.getParameter("url"));
+        return bannerService.editBanner(homeBanner);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteBanner")
+    public ResultDto deleteBanner(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        return bannerService.deleteBanner(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/changeImage")
+    public ResultDto changeImage(@RequestParam(value = "file") MultipartFile[] file,HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        if(file.length>0){
+            String image= FileUploadUtil.uploadFile(file[0],request);
+            return bannerService.changeImage(image,id);
+        }else{
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

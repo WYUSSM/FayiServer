@@ -109,4 +109,46 @@ public class VoluntaryController extends BaseExceptionHandleAction {
         int orgId=Integer.parseInt(request.getParameter("orgId"));
         return voluntaryService.findAllVoluntaryByOrgId(orgId);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteVoluntary")
+    public ResultDto deleteVoluntary(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        return voluntaryService.deleteVoluntary(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/editVoluntary")
+    public ResultDto editVoluntary(HttpServletRequest request) throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleVoluntary simpleVoluntary=new SimpleVoluntary();
+        int id=Integer.parseInt(request.getParameter("id"));
+        simpleVoluntary.setId(id);
+        Date siginUpEndTime=sdf.parse(request.getParameter("siginUpEndTime"));
+        simpleVoluntary.setSiginUpEndTime(siginUpEndTime);
+        Date startTime=sdf.parse(request.getParameter("startTime"));
+        simpleVoluntary.setStartTime(startTime);
+        Date endTime=sdf.parse(request.getParameter("endTime"));
+        simpleVoluntary.setEndTime(endTime);
+        String chargeName=request.getParameter("chargeName");
+        simpleVoluntary.setChargeName(chargeName);
+        String chargePhone=request.getParameter("chargePhone");
+        simpleVoluntary.setChargePhone(chargePhone);
+        String address=request.getParameter("address");
+        simpleVoluntary.setAddress(address);
+        String addressLongitude=request.getParameter("addressLongitude");
+        simpleVoluntary.setAddressLongitude(addressLongitude);
+        String addressLatitude=request.getParameter("addressLatitude");
+        simpleVoluntary.setAddressLatitude(addressLatitude);
+        String voluntaryMore=request.getParameter("voluntaryMore");
+        simpleVoluntary.setVoluntaryMore(voluntaryMore);
+        JSONObject jsonObjectAdds= LocationUtil.getAddress(addressLongitude,addressLatitude);
+        String province = jsonObjectAdds.getJSONObject("result").getJSONObject("addressComponent").getString("province");// 省
+        String city = jsonObjectAdds.getJSONObject("result").getJSONObject("addressComponent").getString("city");// 市
+        String district=jsonObjectAdds.getJSONObject("result").getJSONObject("addressComponent").getString("district");// 区
+        simpleVoluntary.setProvince(province);
+        simpleVoluntary.setCity(city);
+        simpleVoluntary.setDistrict(district);
+        return voluntaryService.editVoluntary(simpleVoluntary);
+    }
 }

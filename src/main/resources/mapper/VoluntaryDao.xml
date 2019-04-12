@@ -127,4 +127,21 @@
         WHERE organizationId=#{id}
         ORDER BY createTime DESC;
     </select>
+
+    <delete id="deleteVoluntary">
+        DELETE FROM voluntary_tab
+        WHERE id=#{id};
+    </delete>
+
+    <update id="editVoluntary" parameterType="com.sig.fayi.entity.SimpleVoluntary">
+        UPDATE voluntary_tab
+        SET siginUpEndTime=#{simpleVoluntary.siginUpEndTime},startTime=#{simpleVoluntary.startTime},endTime=#{simpleVoluntary.endTime},chargeName=#{simpleVoluntary.chargeName},chargePhone=#{simpleVoluntary.chargePhone},
+        address=#{simpleVoluntary.address},addressLongitude=#{simpleVoluntary.addressLongitude},addressLatitude=#{simpleVoluntary.addressLatitude},voluntaryMore=#{simpleVoluntary.voluntaryMore},province=#{simpleVoluntary.province},
+        city=#{simpleVoluntary.city},district=#{simpleVoluntary.district}
+        WHERE id=#{simpleVoluntary.id};
+    </update>
+
+    <insert id="addMessage" parameterType="com.sig.fayi.entity.Message">
+        INSERT INTO message_tab(organizationId,userId,content,time) VALUES(#{message.organizationId},#{message.userId},#{message.content},#{message.time});
+    </insert>
 </mapper>

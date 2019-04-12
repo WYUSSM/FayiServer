@@ -47,4 +47,34 @@ public class BannerServiceImpl implements BannerService {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @Override
+    public ResultDto editBanner(HomeBanner homeBanner){
+        int count=bannerDao.editBanner(homeBanner);
+        if(count==1){
+            return new ResultDto(200,"success",null);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @Override
+    public ResultDto deleteBanner(int id){
+        int count=bannerDao.deleteBanner(id);
+        if(count==1){
+            return new ResultDto(200,"success",null);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @Override
+    public ResultDto changeImage(String image,int id){
+        int count=bannerDao.changeImage(image,id);
+        if(count==1){
+            return new ResultDto(200,"success",null);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

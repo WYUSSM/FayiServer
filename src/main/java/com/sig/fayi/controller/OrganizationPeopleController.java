@@ -67,4 +67,11 @@ public class OrganizationPeopleController {
         String flag=request.getParameter("flag");
         return organizationPeopleService.examine(useId,organizationId,flag);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/findOrgByUserId")
+    public ResultDto findOrgByUserId(HttpServletRequest request){
+        int useId=Integer.parseInt(request.getParameter("userId"));
+        return organizationPeopleService.findOrgByUserId(useId);
+    }
 }

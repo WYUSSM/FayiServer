@@ -16,4 +16,8 @@ public interface VoluntaryService {
     ResultDto findVoluntaryByUserId(int id);
 
     ResultDto findAllVoluntaryByOrgId(int id);
+
+    ResultDto deleteVoluntary(int id);
+
+    ResultDto editVoluntary(SimpleVoluntary simpleVoluntary);
 }

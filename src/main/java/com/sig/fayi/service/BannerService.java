@@ -21,4 +21,10 @@ public interface BannerService {
      *@return com.sig.fayi.dto.ResultDto
      **/
     ResultDto inserBanner(HomeBanner homeBanner);
+
+    ResultDto editBanner(HomeBanner homeBanner);
+
+    ResultDto deleteBanner(int id);
+
+    ResultDto changeImage(String image,int id);
 }

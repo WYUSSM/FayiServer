@@ -1,11 +1,9 @@
 package com.sig.fayi.dao;
 
-import com.sig.fayi.entity.ActivitySignUp;
-import com.sig.fayi.entity.SignupPeople;
-import com.sig.fayi.entity.SimpleVoluntary;
-import com.sig.fayi.entity.User;
+import com.sig.fayi.entity.*;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface VoluntarySignupDao {
@@ -22,4 +20,10 @@ public interface VoluntarySignupDao {
     int reduceSignUpPeopleNum(@Param("signupactivityId")int signupactivityId);
 
     SimpleVoluntary findVoluntaryById(@Param("id") int id);
+
+    int signIn(@Param("signupactivityId") int signupactivityId, @Param("userId") int userId,@Param("signInTime") Date signInTime);
+
+    int addMessage(@Param("message") Message message);
+
+    int addVolunteerTime(@Param("voluntaryTime") double voluntaryTime,@Param("userId") int userId);
 }

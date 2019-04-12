@@ -1,5 +1,6 @@
 package com.sig.fayi.dao;
 
+import com.sig.fayi.entity.Message;
 import com.sig.fayi.entity.Organization;
 import org.apache.ibatis.annotations.Param;
 
@@ -52,5 +53,6 @@ public interface OrganizationDao {
     int examine(@Param("organizationId") int organizationId,@Param("examineUser") int examineUser,@Param("examine_time") Date examine_time,@Param("flag") String flag);
 
     int updateProof(@Param("id") int id,@Param("handIdCard") String handIdCard,@Param("positiveImage") String positiveImage,@Param("negativeImage") String negativeImage,@Param("proofImage") String proofImage);
+
 
 }
