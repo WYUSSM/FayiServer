@@ -17,7 +17,8 @@
         SELECT user_tab.*
         FROM organizationpeople_tab,user_tab
         WHERE organizationpeople_tab.organizationId=#{organizationId}
-        AND organizationpeople_tab.userId=user_tab.id;
+        AND organizationpeople_tab.userId=user_tab.id
+        ORDER BY signUp_time DESC;
     </select>
 
     <delete id="quitOrganizationByTow">
@@ -58,4 +59,13 @@
     <insert id="addMessage" parameterType="com.sig.fayi.entity.Message">
         INSERT INTO message_tab(organizationId,userId,content,time) VALUES(#{message.organizationId},#{message.userId},#{message.content},#{message.time});
     </insert>
+
+    <select id="findAllExmineUser" resultType="com.sig.fayi.entity.User">
+        SELECT user_tab.*
+        FROM organizationpeople_tab,user_tab
+        WHERE organizationpeople_tab.organizationId=#{organizationId}
+        AND organizationpeople_tab.userId=user_tab.id
+        AND organizationpeople_tab.flag='审核中'
+        ORDER BY apply_time DESC;
+    </select>
 </mapper>

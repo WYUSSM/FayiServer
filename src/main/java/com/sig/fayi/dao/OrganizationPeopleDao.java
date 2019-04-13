@@ -36,4 +36,6 @@ public interface OrganizationPeopleDao {
     Organization findOrgByUserId(@Param("userId") int userId);
 
     int addMessage(@Param("message") Message message);
+
+    List<User> findAllExmineUser(@Param("organizationId") int organizationId);
 }

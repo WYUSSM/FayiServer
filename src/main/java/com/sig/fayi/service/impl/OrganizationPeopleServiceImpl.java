@@ -118,4 +118,14 @@ public class OrganizationPeopleServiceImpl implements OrganizationPeopleService 
             return new ResultDto(200,"success",organization);
         }
     }
+
+    @Override
+    public ResultDto findAllExmineUser(int organizationId){
+        List<User> userList=organizationPeopleDao.findAllExmineUser(organizationId);
+        if(userList==null){
+            return new ResultDto(200,"failure",null);
+        }else {
+            return new ResultDto(200,"success",userList);
+        }
+    }
 }

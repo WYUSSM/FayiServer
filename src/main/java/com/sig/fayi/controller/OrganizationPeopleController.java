@@ -74,4 +74,11 @@ public class OrganizationPeopleController {
         int useId=Integer.parseInt(request.getParameter("userId"));
         return organizationPeopleService.findOrgByUserId(useId);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/findAllExmineUser")
+    public ResultDto findAllExmineUser(HttpServletRequest request){
+        int organizationId=Integer.parseInt(request.getParameter("organizationId"));
+        return organizationPeopleService.findAllExmineUser(organizationId);
+    }
 }

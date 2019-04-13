@@ -18,5 +18,7 @@ public interface OrganizationPeopleService {
 
     ResultDto findOrgByUserId(int userId);
 
+    ResultDto findAllExmineUser(int organizationId);
+
 
 }
