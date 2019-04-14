@@ -58,4 +58,18 @@ public class VoluntarySignupController {
         int activityId=Integer.parseInt(request.getParameter("activityId"));
         return voluntarySignupService.getQRcode(activityId,request);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/findSigninPeople")
+    public ResultDto findSigninPeople(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        return voluntarySignupService.findSigninPeople(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findNotSigninPeople")
+    public ResultDto findNotSigninPeople(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        return voluntarySignupService.findNotSigninPeople(id);
+    }
 }

@@ -225,7 +225,7 @@ public class TimeUtil {
     public static double getVoluntaryTime(Date starTime,Date endTime){
         long a=starTime.getTime();
         long b=endTime.getTime();
-        int c = (int)((a - b) / 1000);
+        int c = (int)((b - a) / 1000);
         double voluntaryTime=(double)c/3600.0;
         return voluntaryTime;
     }

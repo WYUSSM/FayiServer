@@ -16,8 +16,8 @@
 
     <!--添加组织-->
     <insert id="addOrganition">
-        INSERT INTO organization_tab(phone,people_name,organizationName,proofImage,handIdCard,positiveImage,negativeImage,address,signature,password,email,register_time,demo)
-        VALUES(#{organization.phone},#{organization.people_name},#{organization.organizationName},#{organization.proofImage},#{organization.handIdCard},#{organization.positiveImage},#{organization.negativeImage},#{organization.address},#{organization.signature},#{organization.password},#{organization.email},#{organization.register_time},#{organization.demo});
+        INSERT INTO organization_tab(phone,people_name,organizationName,proofImage,handIdCard,positiveImage,negativeImage,address,signature,password,email,register_time,demo,volunteer_time,peopleNum)
+        VALUES(#{organization.phone},#{organization.people_name},#{organization.organizationName},#{organization.proofImage},#{organization.handIdCard},#{organization.positiveImage},#{organization.negativeImage},#{organization.address},#{organization.signature},#{organization.password},#{organization.email},#{organization.register_time},#{organization.demo},0,0);
     </insert>
 
     <!--根据电话密码查找组织-->

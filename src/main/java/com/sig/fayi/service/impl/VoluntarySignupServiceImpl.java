@@ -66,6 +66,12 @@ public class VoluntarySignupServiceImpl implements VoluntarySignupService {
 
     @Override
     public ResultDto signIn(int signupactivityId,int userId){
+        SignupPeople signupPeople=voluntarySignupDao.findActivitySignUp(signupactivityId,userId);
+        if(signupPeople!=null){
+            if(signupPeople.getSignInFlag().equals("签到成功")){
+                return new ResultDto(200,"signinover",null);
+            }
+        }
         int count=voluntarySignupDao.signIn(signupactivityId,userId,new Date());
         if(count==1){
             SimpleVoluntary simpleVoluntary=voluntarySignupDao.findVoluntaryById(signupactivityId);
@@ -95,4 +101,24 @@ public class VoluntarySignupServiceImpl implements VoluntarySignupService {
         }
     }
 
+    @Override
+    public ResultDto findSigninPeople(int id){
+        List<User> userList=voluntarySignupDao.findSigninPeople(id);
+        if(userList==null){
+            return new ResultDto(200,"failure",null);
+        }else {
+            return new ResultDto(200,"success",userList);
+        }
+    }
+
+
+    @Override
+    public ResultDto findNotSigninPeople(int id){
+        List<User> userList=voluntarySignupDao.findNotSigninPeople(id);
+        if(userList==null){
+            return new ResultDto(200,"failure",null);
+        }else {
+            return new ResultDto(200,"success",userList);
+        }
+    }
 }

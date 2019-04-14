@@ -16,4 +16,8 @@ public interface VoluntarySignupService {
     ResultDto signIn(int signupactivityId,int userId);
 
     ResultDto getQRcode(int activityId, HttpServletRequest request);
+
+    ResultDto findSigninPeople(int id);
+
+    ResultDto findNotSigninPeople(int id);
 }

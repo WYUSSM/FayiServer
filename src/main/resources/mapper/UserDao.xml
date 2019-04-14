@@ -22,8 +22,8 @@
     <!--通过 name、phone和password 来添加 User-->
     <insert id="addUserByPhonePsw">
         <!--当出现主键冲突时(即重复时)，会报错;不想让程序报错，加入ignore-->
-        INSERT ignore INTO user_tab(phone,password,name,register_time)
-        VALUES (#{phone},#{password},#{name},#{registerTime});
+        INSERT ignore INTO user_tab(phone,password,name,volunteer_time,integral,register_time)
+        VALUES (#{phone},#{password},#{name},0,0,#{registerTime});
     </insert>
 
     <!--通过 phone 查找 User-->

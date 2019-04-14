@@ -7,6 +7,8 @@ public class SignupPeople {
     private int signupactivityId;
     private int userId;
     private Date signUpTime;
+    private String signInFlag;
+    private Date signInTime;
 
     public int getSignupId() {
         return signupId;
@@ -38,5 +40,21 @@ public class SignupPeople {
 
     public void setSignUpTime(Date signUpTime) {
         this.signUpTime = signUpTime;
+    }
+
+    public String getSignInFlag() {
+        return signInFlag;
+    }
+
+    public void setSignInFlag(String signInFlag) {
+        this.signInFlag = signInFlag;
+    }
+
+    public Date getSignInTime() {
+        return signInTime;
+    }
+
+    public void setSignInTime(Date signInTime) {
+        this.signInTime = signInTime;
     }
 }

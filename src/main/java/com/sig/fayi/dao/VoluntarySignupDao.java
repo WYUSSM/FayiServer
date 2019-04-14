@@ -26,4 +26,8 @@ public interface VoluntarySignupDao {
     int addMessage(@Param("message") Message message);
 
     int addVolunteerTime(@Param("voluntaryTime") double voluntaryTime,@Param("userId") int userId);
+
+    List<User> findSigninPeople(@Param("id") int id);
+
+    List<User> findNotSigninPeople(@Param("id") int id);
 }

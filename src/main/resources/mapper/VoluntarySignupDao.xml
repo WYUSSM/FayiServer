@@ -58,4 +58,20 @@
         SET volunteer_time=volunteer_time+#{voluntaryTime}
         WHERE id=#{userId};
     </update>
+
+    <select id="findSigninPeople" resultType="com.sig.fayi.entity.User">
+        SELECT user_tab.*
+        FROM user_tab,activitysignup_tab
+        WHERE activitysignup_tab.userId=user_tab.id
+        AND activitysignup_tab.signupactivityId=#{id}
+        AND activitysignup_tab.signInFlag='签到成功';
+    </select>
+
+    <select id="findNotSigninPeople" resultType="com.sig.fayi.entity.User">
+        SELECT user_tab.*
+        FROM user_tab,activitysignup_tab
+        WHERE activitysignup_tab.userId=user_tab.id
+        AND activitysignup_tab.signupactivityId=#{id}
+        AND activitysignup_tab.signInFlag!='签到成功';
+    </select>
 </mapper>
