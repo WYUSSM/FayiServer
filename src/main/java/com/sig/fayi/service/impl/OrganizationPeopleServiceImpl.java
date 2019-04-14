@@ -22,6 +22,7 @@ public class OrganizationPeopleServiceImpl implements OrganizationPeopleService 
 
     @Override
     public ResultDto joinOrganization(OrganizationPeople organizationPeople){
+        System.out.println(organizationPeople.getUserId());
         Organization organization=organizationPeopleDao.findOrgByUserId(organizationPeople.getUserId());
         if(organization!=null){
             return new ResultDto(200,"havedorg",null);

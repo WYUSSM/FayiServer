@@ -53,7 +53,7 @@
     <select id="findOrgByUserId" resultType="com.sig.fayi.entity.Organization">
         SELECT organization_tab.*
         FROM organizationpeople_tab,organization_tab
-        WHERE organization_tab.id=organizationpeople_tab.organizationId AND organizationpeople_tab.userId=#{useId} AND (organizationpeople_tab.flag='审核通过' OR organizationpeople_tab.flag='审核中');
+        WHERE organization_tab.id=organizationpeople_tab.organizationId AND organizationpeople_tab.userId=#{userId} AND (organizationpeople_tab.flag='审核通过' OR organizationpeople_tab.flag='审核中');
     </select>
 
     <insert id="addMessage" parameterType="com.sig.fayi.entity.Message">
