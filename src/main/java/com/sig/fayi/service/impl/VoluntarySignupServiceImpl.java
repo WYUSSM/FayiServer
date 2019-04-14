@@ -68,8 +68,10 @@ public class VoluntarySignupServiceImpl implements VoluntarySignupService {
     public ResultDto signIn(int signupactivityId,int userId){
         SignupPeople signupPeople=voluntarySignupDao.findActivitySignUp(signupactivityId,userId);
         if(signupPeople!=null){
-            if(signupPeople.getSignInFlag().equals("签到成功")){
-                return new ResultDto(200,"signinover",null);
+            if(signupPeople.getSignInFlag()!=null){
+                if(signupPeople.getSignInFlag().equals("签到成功")){
+                    return new ResultDto(200,"signinover",null);
+                }
             }
         }
         int count=voluntarySignupDao.signIn(signupactivityId,userId,new Date());
