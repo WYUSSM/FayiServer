@@ -57,6 +57,7 @@ public class EssayController extends BaseExceptionHandleAction {
         String author=request.getParameter("author");
         int id=Integer.parseInt(request.getParameter("id"));
         Essay essay=new Essay();
+        essay.setId(id);
         essay.setTitle(title);
         essay.setAuthor(author);
         essay.setUrl(url);
@@ -80,5 +81,13 @@ public class EssayController extends BaseExceptionHandleAction {
     public ResultDto deleteEssayById(HttpServletRequest request, HttpServletResponse response){
         int id=Integer.parseInt(request.getParameter("id"));
         return essayService.deleteEssayById(id);
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/findEssayById")
+    public ResultDto findEssayById(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        return essayService.findEssayById(id);
     }
 }

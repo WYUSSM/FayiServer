@@ -27,4 +27,6 @@ public interface BannerService {
     ResultDto deleteBanner(int id);
 
     ResultDto changeImage(String image,int id);
+
+    ResultDto findBannerById(int id);
 }

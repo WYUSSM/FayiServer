@@ -15,4 +15,6 @@ public interface EssayService {
     ResultDto changeCoverById(String cover,int id);
 
     ResultDto deleteEssayById(int id);
+
+    ResultDto findEssayById(int id);
 }

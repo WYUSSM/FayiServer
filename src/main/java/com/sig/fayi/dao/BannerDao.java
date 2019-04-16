@@ -31,4 +31,6 @@ public interface BannerDao {
 
     int changeImage(@Param("image") String image,@Param("id") int id);
 
+    HomeBanner findBannerById(@Param("id") int id);
+
 }

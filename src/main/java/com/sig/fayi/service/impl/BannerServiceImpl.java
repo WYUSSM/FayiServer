@@ -77,4 +77,14 @@ public class BannerServiceImpl implements BannerService {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @Override
+    public ResultDto findBannerById(int id){
+        HomeBanner homeBanner=bannerDao.findBannerById(id);
+        if(homeBanner==null){
+            return new ResultDto(200,"failure",null);
+        }else {
+            return new ResultDto(200,"success",homeBanner);
+        }
+    }
 }

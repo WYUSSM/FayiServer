@@ -66,4 +66,13 @@ public class EssayServiceImpl implements EssayService {
             return  new ResultDto(200,"failure",null);
         }
     }
+
+    public ResultDto findEssayById(int id){
+        Essay essay=essayDao.findEssayById(id);
+        if(essay==null){
+            return new ResultDto(200,"failure",null);
+        }else {
+            return new ResultDto(200,"success",essay);
+        }
+    }
 }
