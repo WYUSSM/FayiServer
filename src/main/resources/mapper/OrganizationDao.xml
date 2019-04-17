@@ -62,4 +62,10 @@
         SET flag='未审核',handIdCard=#{handIdCard},positiveImage=#{positiveImage},negativeImage=#{negativeImage},proofImage=#{proofImage}
         WHERE id=#{id};
     </update>
+
+
+    <select id="findAllExmineOrganization" resultType="com.sig.fayi.entity.Organization">
+        SELECT * FROM organization_tab
+        WHERE flag!='审核成功' AND flag!='审核不成功';
+    </select>
 </mapper>

@@ -54,5 +54,6 @@ public interface OrganizationDao {
 
     int updateProof(@Param("id") int id,@Param("handIdCard") String handIdCard,@Param("positiveImage") String positiveImage,@Param("negativeImage") String negativeImage,@Param("proofImage") String proofImage);
 
+    List<Organization> findAllExmineOrganization();
 
 }

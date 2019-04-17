@@ -151,4 +151,21 @@ public class VoluntaryController extends BaseExceptionHandleAction {
         simpleVoluntary.setDistrict(district);
         return voluntaryService.editVoluntary(simpleVoluntary);
     }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/findVoluntaryByTitle")
+    public ResultDto findVoluntaryByTitle(HttpServletRequest request){
+        String title=request.getParameter("title");
+        return voluntaryService.findVoluntaryByTitle(title);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findVoluntaryByDistrict")
+    public ResultDto findVoluntaryByDistrict(HttpServletRequest request){
+        String province=request.getParameter("province");
+        String city=request.getParameter("city");
+        String district=request.getParameter("district");
+        return voluntaryService.findVoluntaryByDistrict(province,city,district);
+    }
 }

@@ -155,4 +155,14 @@ public class OrganizationServiceImpl implements OrganizationService {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @Override
+    public ResultDto findAllExmineOrganization(){
+        List<Organization> organizations=organizationDao.findAllExmineOrganization();
+        if(organizations!=null){
+            return new ResultDto(200,"success",organizations);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

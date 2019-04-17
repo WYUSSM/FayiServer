@@ -144,4 +144,19 @@
     <insert id="addMessage" parameterType="com.sig.fayi.entity.Message">
         INSERT INTO message_tab(organizationId,userId,content,time) VALUES(#{message.organizationId},#{message.userId},#{message.content},#{message.time});
     </insert>
+
+
+    <select id="findVoluntaryByTitle" resultType="com.sig.fayi.entity.SimpleVoluntary">
+        SELECT voluntary_tab.*
+        FROM voluntary_tab
+        WHERE title LIKE %%#{title}%%
+        ORDER BY createTime DESC;
+    </select>
+
+    <select id="findVoluntaryByDistrict" resultType="com.sig.fayi.entity.SimpleVoluntary">
+        SELECT voluntary_tab.*
+        FROM voluntary_tab
+        WHERE province=#{province} AND city=#{city} AND district=#{district}
+        ORDER BY createTime DESC;
+    </select>
 </mapper>

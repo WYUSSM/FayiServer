@@ -150,4 +150,10 @@ public class OrganizationController {
         int id=Integer.parseInt(request.getParameter("id"));
         return organizationService.findRankById(id);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/findAllExmineOrganization")
+    public ResultDto findAllExmineOrganization(HttpServletRequest request){
+        return organizationService.findAllExmineOrganization();
+    }
 }

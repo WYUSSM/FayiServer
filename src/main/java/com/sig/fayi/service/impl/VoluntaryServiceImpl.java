@@ -110,4 +110,24 @@ public class VoluntaryServiceImpl implements VoluntaryService {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @Override
+    public ResultDto findVoluntaryByTitle(String title){
+        List<SimpleVoluntary> simpleVoluntaries=voluntaryDao.findVoluntaryByTitle(title);
+        if(simpleVoluntaries!=null){
+            return new ResultDto(200,"success",simpleVoluntaries);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
+
+    @Override
+    public ResultDto findVoluntaryByDistrict(String province,String city,String district){
+        List<SimpleVoluntary> simpleVoluntaries=voluntaryDao.findVoluntaryByDistrict(province,city,district);
+        if(simpleVoluntaries!=null){
+            return new ResultDto(200,"success",simpleVoluntaries);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

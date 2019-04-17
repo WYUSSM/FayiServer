@@ -57,5 +57,7 @@ public interface OrganizationService {
 
     ResultDto findRankById(int id);
 
+    ResultDto findAllExmineOrganization();
+
 
 }

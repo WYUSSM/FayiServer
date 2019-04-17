@@ -20,4 +20,8 @@ public interface VoluntaryService {
     ResultDto deleteVoluntary(int id);
 
     ResultDto editVoluntary(SimpleVoluntary simpleVoluntary);
+
+    ResultDto findVoluntaryByTitle(String title);
+
+    ResultDto findVoluntaryByDistrict(String province,String city,String district);
 }

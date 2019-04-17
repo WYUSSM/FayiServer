@@ -25,4 +25,9 @@ public interface VoluntaryDao {
     int editVoluntary(@Param("simpleVoluntary") SimpleVoluntary simpleVoluntary);
 
     int addMessage(@Param("message") Message message);
+
+    List<SimpleVoluntary> findVoluntaryByTitle(@Param("title") String title);
+
+    List<SimpleVoluntary> findVoluntaryByDistrict(@Param("province") String province,@Param("city") String city,@Param("district") String district);
+
 }
