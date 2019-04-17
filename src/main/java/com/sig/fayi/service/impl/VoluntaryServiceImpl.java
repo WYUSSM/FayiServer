@@ -9,6 +9,7 @@ import com.sig.fayi.utils.LocationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,7 +30,7 @@ public class VoluntaryServiceImpl implements VoluntaryService {
 
     @Override
     public ResultDto findAllSimpleVoluntary(String lat,String lng){
-        List<SimpleVoluntary> simpleVoluntaries=voluntaryDao.findAllSimpleVoluntary();
+        List<SimpleVoluntary> simpleVoluntaries=voluntaryDao.findAllSimpleVoluntary(new Date());
         if(simpleVoluntaries!=null){
             if(lat==null||lng==null){
                 for(SimpleVoluntary simpleVoluntary:simpleVoluntaries){
@@ -112,9 +113,23 @@ public class VoluntaryServiceImpl implements VoluntaryService {
     }
 
     @Override
-    public ResultDto findVoluntaryByTitle(String title){
-        List<SimpleVoluntary> simpleVoluntaries=voluntaryDao.findVoluntaryByTitle(title);
+    public ResultDto findVoluntaryByTitle(String title,String lat,String lng){
+        List<SimpleVoluntary> simpleVoluntaries=voluntaryDao.findVoluntaryByTitle(title,new Date());
         if(simpleVoluntaries!=null){
+            if(lat==null||lng==null){
+                for(SimpleVoluntary simpleVoluntary:simpleVoluntaries){
+                    simpleVoluntary.setDistance("未获取到你的位置");
+                }
+            }else{
+                for(SimpleVoluntary simpleVoluntary:simpleVoluntaries){
+                    if(simpleVoluntary.getAddressLatitude()==null||simpleVoluntary.getAddressLongitude()==null){
+                        simpleVoluntary.setDistance("志愿活动位置错误");
+                    }else{
+                        String distance= LocationUtil.getDistance(lng,lat,simpleVoluntary.getAddressLongitude(),simpleVoluntary.getAddressLatitude());
+                        simpleVoluntary.setDistance(distance);
+                    }
+                }
+            }
             return new ResultDto(200,"success",simpleVoluntaries);
         }else {
             return new ResultDto(200,"failure",null);
@@ -122,9 +137,23 @@ public class VoluntaryServiceImpl implements VoluntaryService {
     }
 
     @Override
-    public ResultDto findVoluntaryByDistrict(String province,String city,String district){
-        List<SimpleVoluntary> simpleVoluntaries=voluntaryDao.findVoluntaryByDistrict(province,city,district);
+    public ResultDto findVoluntaryByDistrict(String province,String city,String district,String lat,String lng){
+        List<SimpleVoluntary> simpleVoluntaries=voluntaryDao.findVoluntaryByDistrict(province,city,district,new Date());
         if(simpleVoluntaries!=null){
+            if(lat==null||lng==null){
+                for(SimpleVoluntary simpleVoluntary:simpleVoluntaries){
+                    simpleVoluntary.setDistance("未获取到你的位置");
+                }
+            }else{
+                for(SimpleVoluntary simpleVoluntary:simpleVoluntaries){
+                    if(simpleVoluntary.getAddressLatitude()==null||simpleVoluntary.getAddressLongitude()==null){
+                        simpleVoluntary.setDistance("志愿活动位置错误");
+                    }else{
+                        String distance= LocationUtil.getDistance(lng,lat,simpleVoluntary.getAddressLongitude(),simpleVoluntary.getAddressLatitude());
+                        simpleVoluntary.setDistance(distance);
+                    }
+                }
+            }
             return new ResultDto(200,"success",simpleVoluntaries);
         }else {
             return new ResultDto(200,"failure",null);

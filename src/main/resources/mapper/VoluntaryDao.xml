@@ -92,7 +92,9 @@
 
 
     <select id="findAllSimpleVoluntary" resultType="com.sig.fayi.entity.SimpleVoluntary">
-        SELECT * FROM voluntary_tab ORDER BY createTime DESC;
+        SELECT * FROM voluntary_tab
+        WHERE siginUpEndTime>=#{now}
+        ORDER BY createTime DESC;
     </select>
 
     <insert id="addVoluntary" parameterType="com.sig.fayi.entity.SimpleVoluntary">
@@ -149,14 +151,14 @@
     <select id="findVoluntaryByTitle" resultType="com.sig.fayi.entity.SimpleVoluntary">
         SELECT voluntary_tab.*
         FROM voluntary_tab
-        WHERE title LIKE %%#{title}%%
+        WHERE title LIKE concat(concat('%%',#{title}),'%%') AND siginUpEndTime>=#{now}
         ORDER BY createTime DESC;
     </select>
 
     <select id="findVoluntaryByDistrict" resultType="com.sig.fayi.entity.SimpleVoluntary">
         SELECT voluntary_tab.*
         FROM voluntary_tab
-        WHERE province=#{province} AND city=#{city} AND district=#{district}
+        WHERE province=#{province} AND city=#{city} AND district=#{district} AND siginUpEndTime>=#{now}
         ORDER BY createTime DESC;
     </select>
 </mapper>

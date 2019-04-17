@@ -21,7 +21,7 @@ public interface VoluntaryService {
 
     ResultDto editVoluntary(SimpleVoluntary simpleVoluntary);
 
-    ResultDto findVoluntaryByTitle(String title);
+    ResultDto findVoluntaryByTitle(String title,String lat,String lng);
 
-    ResultDto findVoluntaryByDistrict(String province,String city,String district);
+    ResultDto findVoluntaryByDistrict(String province,String city,String district,String lat,String lng);
 }

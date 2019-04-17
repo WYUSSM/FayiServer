@@ -157,7 +157,9 @@ public class VoluntaryController extends BaseExceptionHandleAction {
     @RequestMapping(value = "/findVoluntaryByTitle")
     public ResultDto findVoluntaryByTitle(HttpServletRequest request){
         String title=request.getParameter("title");
-        return voluntaryService.findVoluntaryByTitle(title);
+        String lng=request.getParameter("lng");
+        String lat=request.getParameter("lat");
+        return voluntaryService.findVoluntaryByTitle(title,lat,lng);
     }
 
     @ResponseBody
@@ -166,6 +168,8 @@ public class VoluntaryController extends BaseExceptionHandleAction {
         String province=request.getParameter("province");
         String city=request.getParameter("city");
         String district=request.getParameter("district");
-        return voluntaryService.findVoluntaryByDistrict(province,city,district);
+        String lng=request.getParameter("lng");
+        String lat=request.getParameter("lat");
+        return voluntaryService.findVoluntaryByDistrict(province,city,district,lat,lng);
     }
 }
