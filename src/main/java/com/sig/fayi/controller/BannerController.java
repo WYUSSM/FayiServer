@@ -53,7 +53,7 @@ public class BannerController extends BaseExceptionHandleAction {
 
     @ResponseBody
     @RequestMapping(value = "/editBanner")
-    public ResultDto editBanner(@RequestParam(value = "file") MultipartFile[] file,HttpServletRequest request){
+    public ResultDto editBanner(HttpServletRequest request){
         HomeBanner homeBanner=new HomeBanner();
         homeBanner.setId(Integer.parseInt(request.getParameter("id")));
         homeBanner.setDemo(request.getParameter("demo"));
