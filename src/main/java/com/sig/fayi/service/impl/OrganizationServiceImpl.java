@@ -165,4 +165,14 @@ public class OrganizationServiceImpl implements OrganizationService {
             return new ResultDto(200,"failure",null);
         }
     }
+
+    @Override
+    public ResultDto changeHeadImage(String headImage,int id){
+        int count=organizationDao.changeHeadImage(headImage,id);
+        if(count==1){
+            return new ResultDto(200,"success",null);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

@@ -56,4 +56,6 @@ public interface OrganizationDao {
 
     List<Organization> findAllExmineOrganization();
 
+    int changeHeadImage(@Param("headImage") String headImage,@Param("id") int id);
+
 }

@@ -66,6 +66,13 @@
 
     <select id="findAllExmineOrganization" resultType="com.sig.fayi.entity.Organization">
         SELECT * FROM organization_tab
-        WHERE flag!='审核成功' AND flag!='审核不成功';
+        WHERE flag IS NULL OR flag='审核中';
     </select>
+
+
+    <update id="changeHeadImage">
+        UPDATE organization_tab
+        SET headImage=#{headImage}
+        WHERE id=#{id};
+    </update>
 </mapper>

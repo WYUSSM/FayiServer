@@ -156,4 +156,16 @@ public class OrganizationController {
     public ResultDto findAllExmineOrganization(HttpServletRequest request){
         return organizationService.findAllExmineOrganization();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/changeHeadImage")
+    public ResultDto changeHeadImage(@RequestParam(value = "file") MultipartFile[] file,HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        if (file.length ==1) {
+            String headImage=FileUploadUtil.uploadFile(file[0],request);
+            return organizationService.changeHeadImage(headImage,id);
+        }else {
+            return new ResultDto(200,"failure",null);
+        }
+    }
 }

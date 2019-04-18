@@ -59,5 +59,7 @@ public interface OrganizationService {
 
     ResultDto findAllExmineOrganization();
 
+    ResultDto changeHeadImage(String headImage,int id);
+
 
 }
